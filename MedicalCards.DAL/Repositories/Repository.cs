@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,12 +36,12 @@ namespace MedicalCards.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _context.Dispose();
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllByPredicate(Func<TEntity, bool> predicate)
+        public async Task<IEnumerable<TEntity>> GetAllByPredicate(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await set.AsNoTracking().Where(predicate).ToArrayAsync();
         }
 
         public async Task<IEnumerable<TEntity>> GetAll()

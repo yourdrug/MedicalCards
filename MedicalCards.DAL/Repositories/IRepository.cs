@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,6 @@ namespace Data_acccess_layer.Repositories
         Task<T> Create(T item); // создание объекта
         Task<T> Update(T item); // обновление объекта
         Task<T> Delete(int id); // удаление объекта по id
-        Task<IEnumerable<T>> GetAllByPredicate(Func<T, bool> predicate);
+        Task<IEnumerable<T>> GetAllByPredicate(Expression<Func<T, bool>> predicate);
     }
 }
