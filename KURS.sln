@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCards", "KURS\MedicalCards.csproj", "{52AC3E69-AF39-4F4A-A822-147517CB4B58}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCards.DAL", "Data acccess layer\MedicalCards.DAL.csproj", "{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52AC3E69-AF39-4F4A-A822-147517CB4B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52AC3E69-AF39-4F4A-A822-147517CB4B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52AC3E69-AF39-4F4A-A822-147517CB4B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52AC3E69-AF39-4F4A-A822-147517CB4B58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2DD2802D-81F0-4925-A7C3-3BE5565FBAD7}
+	EndGlobalSection
+EndGlobal
