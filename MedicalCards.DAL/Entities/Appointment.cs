@@ -18,7 +18,7 @@ namespace Data_acccess_layer.Entities
 
         public DateTime FinishAppointment { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
 
         public Doctor? Doctor { get; set; }

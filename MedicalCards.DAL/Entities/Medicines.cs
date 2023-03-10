@@ -18,7 +18,7 @@ namespace Data_acccess_layer.Entities
         [MaxLength(100)]
         public string? Comment { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
 
         public IEnumerable<PrescriptionOfMedicines>? PrescriptionOfMedicines { get; set; }

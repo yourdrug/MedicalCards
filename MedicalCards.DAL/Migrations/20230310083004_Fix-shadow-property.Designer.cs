@@ -4,6 +4,7 @@ using Data_acccess_layer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data_acccess_layer.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20230310083004_Fix-shadow-property")]
+    partial class Fixshadowproperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,8 +104,8 @@ namespace Data_acccess_layer.Migrations
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("StartAppointment")
                         .HasColumnType("datetime2");
@@ -253,8 +256,8 @@ namespace Data_acccess_layer.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("MedicinesId");
 

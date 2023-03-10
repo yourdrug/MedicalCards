@@ -10,17 +10,17 @@ namespace Data_acccess_layer
 {
     public class AppContext : DbContext
     {
-        DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Patient> Patients { get; set; }
-        DbSet<Doctor> Doctors { get; set; }
-        DbSet<Address> Addresses { get; set; }
-        DbSet<Allergy> Allergies { get; set; }
-        DbSet<Appointment> Appointments { get; set; }
-        DbSet<Diagnosis> Diagnoses { get; set; }
-        DbSet<Features>  Features { get; set; }
-        DbSet<Medicines> Medicines { get; set; }
-        DbSet<Qualification> Qualifications { get; set; }
-        DbSet<Research> Researches { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Allergy> Allergies { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Diagnosis> Diagnoses { get; set; }
+        public DbSet<Features>  Features { get; set; }
+        public DbSet<Medicines> Medicines { get; set; }
+        public DbSet<Qualification> Qualifications { get; set; }
+        public DbSet<Research> Researches { get; set; }
 
         public AppContext()
         {
@@ -51,13 +51,11 @@ namespace Data_acccess_layer
             modelBuilder.Entity<Diagnosis>()
                 .HasOne(d => d.Doctor)
                 .WithMany(p => p.Diagnosis)
-                .HasForeignKey(d => d.PatientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Diagnosis>()
                 .HasOne(d => d.Patient)
                 .WithOne(p => p.Diagnosis)
-                //.HasForeignKey(d => d.Patient)
                 .OnDelete(DeleteBehavior.Restrict);
         }
 
