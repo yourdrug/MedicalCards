@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data_acccess_layer.Repositories
+namespace MedicalCards.DAL.Repositories
 {
     interface IRepository<T> : IDisposable 
         where T : class

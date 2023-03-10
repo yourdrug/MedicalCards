@@ -1,4 +1,4 @@
-﻿using Data_acccess_layer.Repositories;
+﻿using MedicalCards.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCards.Repositories
+namespace MedicalCards.DAL.Repositories
 {
     public abstract class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data_acccess_layer.Entities
+namespace MedicalCards.DAL.Entities
 {
     public class Features
     {

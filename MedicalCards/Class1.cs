@@ -1,6 +1,6 @@
 using System;
 
-namespace KURS
+namespace MedicalCards
 {
     public class Class1
     {

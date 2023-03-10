@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Data_acccess_layer.Migrations
+namespace MedicalCards.DAL.Migrations
 {
     /// <inheritdoc />
     public partial class Fixshadowproperty : Migration

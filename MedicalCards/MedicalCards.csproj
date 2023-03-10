@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MedicalCards.DAL\MedicalCards.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

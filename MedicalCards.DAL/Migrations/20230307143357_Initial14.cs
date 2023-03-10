@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Data_acccess_layer.Migrations
+namespace MedicalCards.DAL.Migrations
 {
     /// <inheritdoc />
     public partial class Initial14 : Migration
