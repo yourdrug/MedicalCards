@@ -12,31 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KURS
+namespace WindowAuth
 {
     /// <summary>
-    /// Логика взаимодействия для WindowAuth.xaml
+    /// Логика взаимодействия для RegistrationWindow.xaml
     /// </summary>
-    public partial class WindowAuth : Window
+    public partial class RegistrationWindow : Window
     {
-        public WindowAuth()
+        public RegistrationWindow()
         {
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
+            Owner.Show();
+            this.Close();
         }
     }
 }

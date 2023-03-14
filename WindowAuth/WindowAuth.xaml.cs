@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WindowAuth;
 
 namespace KURS
 {
@@ -24,19 +25,25 @@ namespace KURS
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            RegistrationWindow regWindow = new RegistrationWindow();
+            regWindow.Owner = this;
+            regWindow.Show();
         }
 
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        private void PasswordChanged(object sender, RoutedEventArgs e)
         {
+            if (PasswordTextBox.Password.Length > 0)
+            {
+                Watermark.Visibility = Visibility.Collapsed;
+            }
 
+            else 
+            {
+                Watermark.Visibility = Visibility.Visible;
+            }
         }
     }
 }

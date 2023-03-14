@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCards", "MedicalCards\MedicalCards.csproj", "{52AC3E69-AF39-4F4A-A822-147517CB4B58}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCards.DAL", "MedicalCards.DAL\MedicalCards.DAL.csproj", "{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCards.DAL.Tests", "MedicalCards.DAL.Tests\MedicalCards.DAL.Tests.csproj", "{714AE329-651B-49BB-AB55-05EE6F84B1BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCards.DAL.Tests", "MedicalCards.DAL.Tests\MedicalCards.DAL.Tests.csproj", "{714AE329-651B-49BB-AB55-05EE6F84B1BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsInterface", "WindowAuth\WindowsInterface.csproj", "{BD516B14-A0DD-4F03-B0EC-AF6CF2E5AB94}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF} = {3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +18,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{52AC3E69-AF39-4F4A-A822-147517CB4B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52AC3E69-AF39-4F4A-A822-147517CB4B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52AC3E69-AF39-4F4A-A822-147517CB4B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52AC3E69-AF39-4F4A-A822-147517CB4B58}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +26,10 @@ Global
 		{714AE329-651B-49BB-AB55-05EE6F84B1BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{714AE329-651B-49BB-AB55-05EE6F84B1BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{714AE329-651B-49BB-AB55-05EE6F84B1BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD516B14-A0DD-4F03-B0EC-AF6CF2E5AB94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD516B14-A0DD-4F03-B0EC-AF6CF2E5AB94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD516B14-A0DD-4F03-B0EC-AF6CF2E5AB94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD516B14-A0DD-4F03-B0EC-AF6CF2E5AB94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
