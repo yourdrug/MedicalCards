@@ -160,7 +160,7 @@
         </Grid.RowDefinitions>
         <TextBox Grid.Row="1" Style="{DynamicResource TextB}" x:Name="LoginTextBox"
                  VerticalAlignment="Top" BorderBrush="Black" 
-                 Margin="50,10,50,0" Height="40"/>
+                 Margin="50,10,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
         <TextBlock Grid.Row="1" 
                    IsHitTestVisible="False" Padding="13,10" Margin="50,10,50,200"
                    FontSize="14" Text="Введите логин" Foreground="#FF464545">
@@ -178,13 +178,12 @@
 
 
         <PasswordBox Style="{DynamicResource PassB}" 
-                     Margin="50,60,50,150" x:Name="PasswordTextBox"
+                     Margin="50,60,50,150" x:Name="PasswordTextBox" Width="260"
                      Background="White" Grid.Row="1"/>
 
         <TextBlock Grid.Row="1" x:Name="Watermark"
             IsHitTestVisible="False" Padding="13,10" Margin="50,60,50,150"
-            FontSize="14" Text="Введите пароль" Foreground="#FF464545">
-        </TextBlock>
+            FontSize="14" Text="Введите пароль" Foreground="#FF464545"/>
 
 
         <Button Content="Войти" HorizontalAlignment="Center" 
@@ -199,8 +198,10 @@
                 VerticalAlignment="Top" Click="Button_Click" Background="#FF2E3844"
                 Foreground="#FF455468" BorderBrush="#FF455468"/>
 
-        <Label Grid.Row="2" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" Height="40" Width="149"/>
-        
+        <Label Grid.Row="2" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
+               Margin="0,10,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
+               Height="40" Width="149" Foreground="#FFC7CDD2"/>
+
 
 
     </Grid>
