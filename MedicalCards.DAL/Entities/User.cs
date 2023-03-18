@@ -14,11 +14,11 @@ namespace MedicalCards.DAL.Entities
         [MaxLength(20)]
         public string Login { get; set; } = null!;
 
-        [MaxLength(50)]
+        [MaxLength(70)]
         public string Hash { get; set; } = null!;
 
-        [MaxLength(50)]
-        public string Salt { get; set; } = null!;
+        //[MaxLength(50)]
+        //public string Salt { get; set; } = null!;
 
         [MaxLength(20)]
         public string Role { get; set; } = null!;
