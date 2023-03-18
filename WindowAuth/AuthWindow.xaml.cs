@@ -11,22 +11,24 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WindowAuth;
+using AuthWindow;
 
 namespace KURS
 {
     /// <summary>
-    /// Логика взаимодействия для WindowAuth.xaml
+    /// Логика взаимодействия для AuthWindow.xaml
     /// </summary>
-    public partial class WindowAuth : Window
+    public partial class AuthWindow : Window
     {
-        public WindowAuth()
+        public AuthWindow()
         {
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            this.LoginTextBox.Text = "";
+            this.PasswordTextBox.Clear();
             this.Hide();
             RegistrationWindow regWindow = new RegistrationWindow();
             regWindow.Owner = this;

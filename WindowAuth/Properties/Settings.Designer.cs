@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowAuth.Properties
+namespace AuthWindow.Properties
 {
 
 

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WindowAuth
+namespace AuthWindow
 {
     /// <summary>
     /// Логика взаимодействия для RegistrationWindow.xaml
@@ -24,10 +24,54 @@ namespace WindowAuth
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
-            Owner.Show();
             this.Close();
+            Owner.Show();
+        }
+
+        private void PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (PasswordTextBox.Password.Length > 0)
+            {
+                Watermark.Visibility = Visibility.Collapsed;
+            }
+
+            else
+            {
+                Watermark.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void RepeatPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (RepeatPasswordTextBox.Password.Length > 0)
+            {
+                RepeatWatermark.Visibility = Visibility.Collapsed;
+            }
+
+            else
+            {
+                RepeatWatermark.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void SignUp_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(false)
+            {
+
+            }
+
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Учетная запись зарегистрирована!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (result == MessageBoxResult.OK)
+                {
+                    this.Close();
+                    Owner.Show();
+                }
+            }
         }
     }
 }
