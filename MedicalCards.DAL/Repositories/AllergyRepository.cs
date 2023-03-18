@@ -1,4 +1,5 @@
 ﻿using MedicalCards.DAL.Entities;
+using MedicalCards.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace MedicalCards.DAL.Repositories
 {
-    public class AllegryRepository : Repository<Allergy>
+    public class AllergyRepository : Repository<Allergy>,IAllergyRepository
     {
-        public AllegryRepository(DbContext context) : base (context)
+        public AllergyRepository(DbContext context) : base (context)
         {
             
         }

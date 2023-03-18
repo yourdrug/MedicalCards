@@ -1,4 +1,5 @@
 ﻿using MedicalCards.DAL.Entities;
+using MedicalCards.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCards.DAL.Repositories
 {
-    public class MedicinesRepository : Repository<Medicines>
+    public class MedicinesRepository : Repository<Medicines>,IMedicinesRepository
     {
         public MedicinesRepository(DbContext context) : base(context)
         {

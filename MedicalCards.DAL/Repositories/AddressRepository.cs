@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MedicalCards.DAL.Repositories.Interfaces;
 
 namespace MedicalCards.DAL.Repositories
 {
-    public class AddressRepository: Repository<Address>
+    public class AddressRepository: Repository<Address>,IAddressRepository
     {
         public AddressRepository(DbContext context) : base(context)
         {
