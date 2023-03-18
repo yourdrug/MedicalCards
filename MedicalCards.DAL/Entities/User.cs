@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace MedicalCards.DAL.Entities
 {
+
     public class User
     {
+        public enum RoleType
+        {
+            Admin = 1,
+            Patient,
+            Doctor
+        };
+
         public int UserId { get; set; }
 
         [MaxLength(20)]
@@ -17,10 +25,6 @@ namespace MedicalCards.DAL.Entities
         [MaxLength(70)]
         public string Hash { get; set; } = null!;
 
-        //[MaxLength(50)]
-        //public string Salt { get; set; } = null!;
-
-        [MaxLength(20)]
-        public string Role { get; set; } = null!;
+        public RoleType Role { get; set; }
     }
 }
