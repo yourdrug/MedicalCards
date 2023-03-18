@@ -1,4 +1,4 @@
-﻿using MedicalCards.DAL.Repositories;
+﻿using MedicalCards.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
