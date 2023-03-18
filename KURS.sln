@@ -7,12 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCards.DAL", "Medical
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCards.DAL.Tests", "MedicalCards.DAL.Tests\MedicalCards.DAL.Tests.csproj", "{714AE329-651B-49BB-AB55-05EE6F84B1BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsInterface", "WindowAuth\WindowsInterface.csproj", "{BD516B14-A0DD-4F03-B0EC-AF6CF2E5AB94}"
-	ProjectSection(ProjectDependencies) = postProject
-		{3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF} = {3E2C45A8-07B0-4ECB-8511-7B3CEAEF2DAF}
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCards.BLL", "MedicalCards.BLL\MedicalCards.BLL.csproj", "{CB969290-69FC-4EA2-829C-A0DF758B6515}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsInterfaces", "WindowsInterfaces\WindowsInterfaces.csproj", "{18BE8700-F6C5-4952-A699-16E5667A4D32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,14 +25,14 @@ Global
 		{714AE329-651B-49BB-AB55-05EE6F84B1BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{714AE329-651B-49BB-AB55-05EE6F84B1BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{714AE329-651B-49BB-AB55-05EE6F84B1BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD516B14-A0DD-4F03-B0EC-AF6CF2E5AB94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD516B14-A0DD-4F03-B0EC-AF6CF2E5AB94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD516B14-A0DD-4F03-B0EC-AF6CF2E5AB94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD516B14-A0DD-4F03-B0EC-AF6CF2E5AB94}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CB969290-69FC-4EA2-829C-A0DF758B6515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CB969290-69FC-4EA2-829C-A0DF758B6515}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB969290-69FC-4EA2-829C-A0DF758B6515}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB969290-69FC-4EA2-829C-A0DF758B6515}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18BE8700-F6C5-4952-A699-16E5667A4D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18BE8700-F6C5-4952-A699-16E5667A4D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18BE8700-F6C5-4952-A699-16E5667A4D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18BE8700-F6C5-4952-A699-16E5667A4D32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
