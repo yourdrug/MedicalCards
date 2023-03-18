@@ -189,7 +189,7 @@
         <Button Content="Войти" HorizontalAlignment="Center" 
                 BorderThickness="0" Margin="0,125,0,0" Width="260" Height="40" 
                 VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
-                Foreground="#FF8A99A8"/>
+                Foreground="#FF8A99A8" Click="SignIn_Click"/>
 
         <Line Grid.Row="1" Stroke="#FFC7CDD2" StrokeThickness="2" X1="50" Y1="185" X2="310" Y2="185"/>
 

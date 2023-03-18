@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AuthWindow;
+using MedicalCards.BLL.Services;
+using MedicalCards.DAL.Entities;
+using MedicalCards.DAL.Repositories;
+using WindowsInterfaces;
 
 namespace KURS
 {
@@ -45,6 +49,26 @@ namespace KURS
             else 
             {
                 Watermark.Visibility = Visibility.Visible;
+            }
+        }
+
+        private async void SignIn_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                using var userService = new UserService(
+                    new UserRepository(
+                        new MedicalCards.DAL.AppContext()
+                        )
+                    );
+
+                User user = await userService.Authentificate(LoginTextBox.Text, PasswordTextBox.Password);
+                if (user.Role == User.RoleType.Admin)
+                {
+                    this.Hide();
+                    AccountWindow accountWindow = new AccountWindow();
+                    accountWindow.Show();
+                }
+                
             }
         }
     }
