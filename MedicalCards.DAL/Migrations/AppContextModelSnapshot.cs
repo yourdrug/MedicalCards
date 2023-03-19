@@ -423,9 +423,6 @@ namespace MedicalCards.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<int>("Access")
-                        .HasColumnType("int");
-
                     b.Property<string>("Hash")
                         .IsRequired()
                         .HasMaxLength(70)
