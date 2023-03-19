@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace MedicalCards.BLL.Services
 {
@@ -41,6 +42,40 @@ namespace MedicalCards.BLL.Services
         {
             var user = await userRepository.FindByCredits(login, GetSHA256Hash(password));
             return user;
+        }
+
+        public async Task<User> SignUp(string login, string password, string role)
+        {
+            User user = new User();
+            if (await userRepository.isUniqueLogin(login))
+            {
+                user.Login = login;
+            }
+
+            else
+            {
+                
+            }
+
+            user.Hash = GetSHA256Hash(password);
+            switch (role)
+            {
+                case "Admin":
+                    user.Role = User.RoleType.Admin;
+                    break;
+                case "Patient":
+                    user.Role = User.RoleType.Patient;
+                    break;
+                case "Doctor":
+                    user.Role = User.RoleType.Doctor;
+                    break;
+            }
+
+            user.Access = User.AccessType.Active;
+
+            User user2 = await userRepository.Create(user);
+
+            return user2;
         }
 
         public void Dispose()

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MedicalCards.BLL.Services;
+using MedicalCards.DAL.Entities;
+using MedicalCards.DAL.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +22,12 @@ namespace AuthWindow
     /// </summary>
     public partial class RegistrationWindow : Window
     {
+        public string[] roleTyping {get; set;}
         public RegistrationWindow()
         {
             InitializeComponent();
+            roleTyping = new string[] { "Patient", "Doctor", "Admin" };
+            DataContext = this;
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
@@ -56,22 +62,33 @@ namespace AuthWindow
             }
         }
 
-        private void SignUp_Button_Click(object sender, RoutedEventArgs e)
+        private async void SignUp_Button_Click(object sender, RoutedEventArgs e)
         {
-            if(false)
             {
+                using var userService = new UserService(
+                    new UserRepository(
+                        new MedicalCards.DAL.AppContext()
+                        )
+                    );
 
-            }
+                User user = await userService.SignUp(LoginTextBox.Text, PasswordTextBox.Password, ComboBox1.Text);
 
-            else
-            {
-                MessageBoxResult result = MessageBox.Show("Учетная запись зарегистрирована!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
-                if (result == MessageBoxResult.OK)
+                if (true)
                 {
-                    this.Close();
-                    Owner.Show();
+                    MessageBoxResult result = MessageBox.Show("Учетная запись зарегистрирована!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        this.Close();
+                        Owner.Show();
+                    }
+                }
+
+                else
+                {
+
                 }
             }
+
         }
     }
 }

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace MedicalCards.DAL.Entities
 {
-
     public class User
     {
         public enum RoleType
@@ -15,6 +14,14 @@ namespace MedicalCards.DAL.Entities
             Admin = 1,
             Patient,
             Doctor
+        };
+
+
+        public enum AccessType
+        {
+            Blocked = -1,
+            UnderInvestigation,
+            Active
         };
 
         public int UserId { get; set; }
@@ -26,5 +33,7 @@ namespace MedicalCards.DAL.Entities
         public string Hash { get; set; } = null!;
 
         public RoleType Role { get; set; }
+
+        public AccessType Access { get; set; }
     }
 }

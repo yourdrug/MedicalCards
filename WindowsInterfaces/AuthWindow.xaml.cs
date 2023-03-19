@@ -62,12 +62,22 @@ namespace KURS
                     );
 
                 User user = await userService.Authentificate(LoginTextBox.Text, PasswordTextBox.Password);
-                if (user.Role == User.RoleType.Admin)
+                if(user.Access == User.AccessType.Active)
                 {
-                    this.Hide();
-                    AccountWindow accountWindow = new AccountWindow();
-                    accountWindow.Show();
+                    if (user.Role == User.RoleType.Patient)
+                    {
+                        this.Hide();
+                        AccountWindow accountWindow = new AccountWindow();
+                        accountWindow.Owner = this;
+                        accountWindow.Show();
+                    }
                 }
+
+                else
+                {
+                    MessageBox.Show("Ваша учетная запись заблокирована или находится на рассмотрении!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+               
                 
             }
         }

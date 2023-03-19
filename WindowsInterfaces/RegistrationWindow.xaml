@@ -36,7 +36,6 @@
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="FontSize" Value="14"/>
             <Setter Property="Width" Value="250"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="14"/>
@@ -155,15 +154,15 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="300"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="350"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <TextBox Grid.Row="1" Style="{DynamicResource TextB}" x:Name="LoginTextBox"
-                 VerticalAlignment="Top" BorderBrush="Black" Margin="50,10,50,0" Height="40"/>
+                 VerticalAlignment="Top" BorderBrush="Black" Margin="55,10,55,0" Height="40"/>
         <TextBlock Grid.Row="1" 
-                   IsHitTestVisible="False" Padding="13,10" Margin="55,10,55,250"
+                   IsHitTestVisible="False" Padding="13,10" Margin="55,10,55,300"
                    FontSize="14" Text="Введите логин" Foreground="#FF464545">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -178,37 +177,42 @@
         </TextBlock>
 
         <PasswordBox Style="{DynamicResource PassB}" 
-                     Margin="55,70,55,190" x:Name="PasswordTextBox"
+                     Margin="55,62,55,238" x:Name="PasswordTextBox"
                      Background="White" Grid.Row="1"/>
 
         <TextBlock Grid.Row="1" x:Name="Watermark"
-            IsHitTestVisible="False" Padding="13,10" Margin="55,70,55,190"
+            IsHitTestVisible="False" Padding="13,10" Margin="55,67,55,243"
             FontSize="14" Text="Введите пароль" Foreground="#FF464545">
         </TextBlock>
 
         <PasswordBox Style="{DynamicResource PassB}" 
-                     Margin="55,130,55,130" x:Name="RepeatPasswordTextBox"
+                     Margin="55,116,55,184" x:Name="RepeatPasswordTextBox"
                      Background="White" Grid.Row="1"/>
 
         <TextBlock Grid.Row="1" x:Name="RepeatWatermark"
-            IsHitTestVisible="False" Padding="13,10" Margin="55,130,55,130"
+            IsHitTestVisible="False" Padding="13,10" Margin="55,121,55,189"
             FontSize="14" Text="Повторите пароль" Foreground="#FF464545">
         </TextBlock>
 
-        <Button Content="Зарегистрироваться" HorizontalAlignment="Center" 
-                BorderThickness="0" Margin="0,187,0,0" Width="250" Height="40" 
+        <Button Content="Далее" HorizontalAlignment="Center" 
+                BorderThickness="0" Margin="0,236,0,0" Width="250" Height="40" 
                 VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
                 Foreground="#FF8A99A8" Click="SignUp_Button_Click"/>
 
-        <Line Grid.Row="1" Stroke="#FFC7CDD2" StrokeThickness="2" X1="55" Y1="240" X2="305" Y2="240"/>
+        <Line Grid.Row="1" Stroke="#FFC7CDD2" StrokeThickness="2" X1="55" Y1="290" X2="305" Y2="290"/>
 
         <Button Grid.Row="1" Content="Отмена" HorizontalAlignment="Center" 
-                BorderThickness="2" Margin="0,250,0,0" Width="250" Height="40" 
+                BorderThickness="2" Margin="0,300,0,0" Width="250" Height="40" 
                 VerticalAlignment="Top" Click="Cancel_Button_Click" Background="#FF2E3844"
                 Foreground="#FF455468" BorderBrush="#FF455468"/>
 
         <Label Grid.Row="2" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" 
                FontFamily="Gabriola" FontSize="22" Height="40" Width="149" Foreground="#FFC7CDD2"/>
+        
+        <ComboBox x:Name="ComboBox1" HorizontalAlignment="Center" Margin="0,175,0,0" Grid.Row="1"
+                  FontSize="14" FontFamily="Calibri" BorderBrush="Black" BorderThickness="2"
+                  VerticalAlignment="Top" Width="250" Height="40" Padding="13, 10"
+                  ItemsSource="{Binding roleTyping}"/>
 
     </Grid>
 </Window>
