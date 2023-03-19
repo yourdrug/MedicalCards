@@ -11,7 +11,7 @@ namespace MedicalCards.DAL.Repositories
 {
     public class AppointmentRepository : Repository<Appointment>,IAppointmentRepository
     {
-        public AppointmentRepository(DbContext context) : base(context)
+        public AppointmentRepository(AppContext context) : base(context)
         {
             
         }

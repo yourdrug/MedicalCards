@@ -11,7 +11,7 @@ namespace MedicalCards.DAL.Repositories
 {
     public class FeaturesRepository : Repository<Features>,IFeaturesRepository
     {
-        public FeaturesRepository(DbContext context) : base (context)
+        public FeaturesRepository(AppContext context) : base (context)
         {
             
         }

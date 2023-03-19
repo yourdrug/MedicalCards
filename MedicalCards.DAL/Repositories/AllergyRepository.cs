@@ -11,7 +11,7 @@ namespace MedicalCards.DAL.Repositories
 {
     public class AllergyRepository : Repository<Allergy>,IAllergyRepository
     {
-        public AllergyRepository(DbContext context) : base (context)
+        public AllergyRepository(AppContext context) : base (context)
         {
             
         }

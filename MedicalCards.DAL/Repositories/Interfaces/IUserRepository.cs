@@ -10,5 +10,10 @@ namespace MedicalCards.DAL.Repositories.Interfaces
     public interface IUserRepository : IRepository<User>
     {
         Task<User> FindByCredits(string login, string hash);
+
+        Task<bool> isUniqueLogin(string login);
+
+        Task<bool> isUniquePass(string login);
+
     }
 }

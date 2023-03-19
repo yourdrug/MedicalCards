@@ -11,7 +11,7 @@ namespace MedicalCards.DAL.Repositories
 {
     public class PrescriptionOfMedicinesRepository : Repository<PrescriptionOfMedicines>,IPrescriptionOfMedicinesRepository
     {
-        public PrescriptionOfMedicinesRepository(DbContext context) : base(context) 
+        public PrescriptionOfMedicinesRepository(AppContext context) : base(context) 
         {
             
         }

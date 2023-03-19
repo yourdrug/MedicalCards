@@ -11,7 +11,7 @@ namespace MedicalCards.DAL.Repositories
 {
     public class QualificationRepository : Repository<Qualification>,IQualificationRepository
     {
-        public QualificationRepository(DbContext context) : base(context)
+        public QualificationRepository(AppContext context) : base(context)
         {
             
         }

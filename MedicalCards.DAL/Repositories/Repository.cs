@@ -1,4 +1,5 @@
 ﻿using MedicalCards.DAL.Repositories.Interfaces;
+using MedicalCards.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
@@ -13,9 +14,9 @@ namespace MedicalCards.DAL.Repositories
     public abstract class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
-        protected readonly DbContext _context;
+        protected readonly AppContext _context;
         protected readonly DbSet<TEntity> set;
-        protected Repository(DbContext context)
+        protected Repository(AppContext context)
         {
             _context = context;   
             set = context.Set<TEntity>();
@@ -23,6 +24,7 @@ namespace MedicalCards.DAL.Repositories
         public async Task<TEntity> Create(TEntity item)
         {
             EntityEntry<TEntity> create = await set.AddAsync(item);
+            await _context.SaveChangesAsync();
             return create.Entity;
         }
 

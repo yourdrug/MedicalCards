@@ -11,7 +11,7 @@ namespace MedicalCards.DAL.Repositories
 {
     public class AddressRepository: Repository<Address>,IAddressRepository
     {
-        public AddressRepository(DbContext context) : base(context)
+        public AddressRepository(AppContext context) : base(context)
         {
             
         }

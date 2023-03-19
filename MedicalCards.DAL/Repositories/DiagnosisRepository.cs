@@ -11,7 +11,7 @@ namespace MedicalCards.DAL.Repositories
 {
     public class DiagnosisRepository : Repository<Diagnosis>,IDiagnosisRepository
     {
-        public DiagnosisRepository(DbContext context) : base(context)
+        public DiagnosisRepository(AppContext context) : base(context)
         {
             
         }

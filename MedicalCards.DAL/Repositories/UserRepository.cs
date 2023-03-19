@@ -1,6 +1,7 @@
 ﻿using MedicalCards.DAL.Entities;
 using MedicalCards.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace MedicalCards.DAL.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        public UserRepository(DbContext context) : base(context)
+        public UserRepository(AppContext context) : base(context)
         {
             
         }
@@ -19,6 +20,16 @@ namespace MedicalCards.DAL.Repositories
         public async Task<User> FindByCredits(string login, string hash)
         {
             return await set.SingleAsync(user => user.Login == login && user.Hash == hash);
+        }
+
+        public async Task<bool> isUniqueLogin(string login)
+        {
+            return !await _context.Users.AnyAsync(user => user.Login == login);
+        }
+
+        public Task<bool> isUniquePass(string login)
+        {
+            throw new NotImplementedException();
         }
     }
 }
