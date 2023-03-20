@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WindowsInterfaces
 {
     /// <summary>
-    /// Логика взаимодействия для AccountWindow.xaml
+    /// Логика взаимодействия для AdminWindow.xaml
     /// </summary>
-    public partial class AccountWindow : Window
+    public partial class AdminWindow : Window
     {
-        public AccountWindow()
+        public AdminWindow()
         {
             InitializeComponent();
         }

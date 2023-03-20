@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WindowsInterfaces;
 
 namespace AuthWindow
 {
@@ -71,22 +72,52 @@ namespace AuthWindow
                         )
                     );
 
-                User user = await userService.SignUp(LoginTextBox.Text, PasswordTextBox.Password, ComboBox1.Text);
 
-                if (true)
+               /* MessageBoxResult result = MessageBox.Show("Учетная запись зарегистрирована!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (result == MessageBoxResult.OK)
                 {
-                    MessageBoxResult result = MessageBox.Show("Учетная запись зарегистрирована!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
-                    if (result == MessageBoxResult.OK)
-                    {
-                        this.Close();
-                        Owner.Show();
-                    }
+                    this.Close();
+                    Owner.Show();
+                }*/
+
+
+                if (PasswordTextBox.Password != RepeatPasswordTextBox.Password)
+                {
+                    MessageBox.Show("Пароли должны совпадать!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
 
                 else
                 {
+                    User user = await userService.SignUp(LoginTextBox.Text, PasswordTextBox.Password, ComboBox1.Text);
 
-                }
+                    switch (user.Role)
+                    {
+                        case User.RoleType.Patient:
+                            {
+                                this.Hide();
+                                PatientRegWindow patientRegWindow = new PatientRegWindow(user);
+                                patientRegWindow.Owner = this;
+                                patientRegWindow.Show();
+                                break;
+                            }
+
+                        case User.RoleType.Doctor:
+                            {
+                                this.Hide();
+                                DoctorRegWindow doctorRegWindow = new DoctorRegWindow();
+                                doctorRegWindow.Owner = this;
+                                doctorRegWindow.Show();
+                                break;
+                            }
+
+                        case User.RoleType.Admin:
+                            {
+                               
+                                break;
+                            }
+                    }
+                }   
+
             }
 
         }

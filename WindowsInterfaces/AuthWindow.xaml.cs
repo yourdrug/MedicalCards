@@ -64,13 +64,37 @@ namespace KURS
                 User user = await userService.Authentificate(LoginTextBox.Text, PasswordTextBox.Password);
                 if(user.Access == User.AccessType.Active)
                 {
-                    if (user.Role == User.RoleType.Patient)
+
+                    switch (user.Role)
                     {
-                        this.Hide();
-                        AccountWindow accountWindow = new AccountWindow();
-                        accountWindow.Owner = this;
-                        accountWindow.Show();
+                        case User.RoleType.Patient:
+                            {
+                                this.Hide();
+                                PatientWindow patientWindow = new PatientWindow();
+                                patientWindow.Owner = this;
+                                patientWindow.Show();
+                                break;
+                            }
+
+                        case User.RoleType.Doctor:
+                            {
+                                this.Hide();
+                                DoctorWindow doctorWindow = new DoctorWindow();
+                                doctorWindow.Owner = this;
+                                doctorWindow.Show();
+                                break;
+                            }
+
+                        case User.RoleType.Admin:
+                            {
+                                this.Hide();
+                                AdminWindow adminWindow = new AdminWindow();
+                                adminWindow.Owner = this;
+                                adminWindow.Show();
+                                break;
+                            }
                     }
+                   
                 }
 
                 else
