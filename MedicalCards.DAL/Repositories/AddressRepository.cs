@@ -15,5 +15,21 @@ namespace MedicalCards.DAL.Repositories
         {
             
         }
+
+        public async Task<Address> FindByCredits(Address address)
+        {
+            return await set.SingleAsync(Address => Address.City == address.City &
+                                                      Address.Street == address.Street &
+                                                      Address.HouseNumber == address.HouseNumber &
+                                                      Address.FlatNumber == address.FlatNumber);
+        }
+
+        public async Task<bool> isUniqueAdress(Address address)
+        {
+            return !await _context.Addresses.AnyAsync(Address => Address.City == address.City &
+                                                      Address.Street == address.Street &
+                                                      Address.HouseNumber == address.HouseNumber &
+                                                      Address.FlatNumber == address.FlatNumber);
+        }
     }
 }
