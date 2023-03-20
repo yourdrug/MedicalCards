@@ -36,6 +36,12 @@ namespace MedicalCards.DAL.Repositories
             return entry;
         }
 
+        public void Delete(TEntity entry)
+        {
+            set.Remove(entry);
+            _context.SaveChanges();
+        }
+
         public void Dispose()
         {
             _context.Dispose();

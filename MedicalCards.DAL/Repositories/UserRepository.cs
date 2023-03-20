@@ -27,9 +27,5 @@ namespace MedicalCards.DAL.Repositories
             return !await _context.Users.AnyAsync(user => user.Login == login);
         }
 
-        public Task<bool> isUniquePass(string login)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -13,7 +13,5 @@ namespace MedicalCards.DAL.Repositories.Interfaces
 
         Task<bool> isUniqueLogin(string login);
 
-        Task<bool> isUniquePass(string login);
-
     }
 }

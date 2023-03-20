@@ -15,6 +15,7 @@ namespace MedicalCards.DAL.Repositories.Interfaces
         Task<T> Create(T item); // создание объекта
         Task<T> Update(T item); // обновление объекта
         Task<T> Delete(int id); // удаление объекта по id
+        void Delete(T entry);
         Task<IEnumerable<T>> GetAllByPredicate(Expression<Func<T, bool>> predicate);
     }
 }

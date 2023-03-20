@@ -44,6 +44,11 @@ namespace MedicalCards.BLL.Services
             return user;
         }
 
+        public void CancelSignUp(User user)
+        {
+            userRepository.Delete(user);
+        }
+
         public async Task<User> SignUp(string login, string password, string role)
         {
             User user = new User();
@@ -54,7 +59,7 @@ namespace MedicalCards.BLL.Services
 
             else
             {
-                
+                //
             }
 
             user.Hash = GetSHA256Hash(password);
