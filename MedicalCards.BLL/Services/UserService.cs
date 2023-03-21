@@ -79,6 +79,7 @@ namespace MedicalCards.BLL.Services
             user.Access = User.AccessType.Active;
 
             User user2 = await userRepository.Create(user);
+            await userRepository.Save();
 
             return user2;
         }

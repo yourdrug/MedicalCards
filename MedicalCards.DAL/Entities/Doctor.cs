@@ -30,6 +30,7 @@ namespace MedicalCards.DAL.Entities
 
         public int AddressId { get; set; }
 
+        [Column(TypeName = "date")]
         public DateTime DateOfBirth { get; set; }
 
 

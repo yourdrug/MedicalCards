@@ -1,7 +1,9 @@
-﻿using Microsoft.Identity.Client;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +31,7 @@ namespace MedicalCards.DAL.Entities
         [MaxLength(100)]
         public string? Comment { get; set; }
 
+        [Column(TypeName = "date")]
         public DateTime DateOfResearch { get; set; }
 
 

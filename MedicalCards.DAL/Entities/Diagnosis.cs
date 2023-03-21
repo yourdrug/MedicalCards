@@ -22,6 +22,7 @@ namespace MedicalCards.DAL.Entities
         [MaxLength(50)]
         public string Comment { get; set; } = null!;
 
+        [Column(TypeName = "date")]
         public DateTime DateOfDiagnosis { get; set; }
 
         public Doctor? Doctor { get; set; }

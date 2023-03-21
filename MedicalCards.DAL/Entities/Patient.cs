@@ -39,6 +39,7 @@ namespace MedicalCards.DAL.Entities
         [MaxLength(50)]
         public string WorkPlace { get; set; } = null!;
 
+        [Column(TypeName = "date")]
         public DateTime DateOfBirth { get; set; }
 
 

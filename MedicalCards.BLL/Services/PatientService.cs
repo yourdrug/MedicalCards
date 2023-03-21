@@ -25,6 +25,7 @@ namespace MedicalCards.BLL.Services
             if(await addressRepository.isUniqueAdress(address))
             {
                 var Address = await addressRepository.Create(address);
+                await addressRepository.Save();
                 patient.AddressId = Address.AddressId;
             }
 
@@ -36,6 +37,7 @@ namespace MedicalCards.BLL.Services
             
             
             var patient1 = await patientRepository.Create(patient);
+            await patientRepository.Save();
             return patient1;
         }
 

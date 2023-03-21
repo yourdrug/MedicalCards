@@ -24,7 +24,7 @@ namespace MedicalCards.DAL.Repositories
         public async Task<TEntity> Create(TEntity item)
         {
             EntityEntry<TEntity> create = await set.AddAsync(item);
-            await _context.SaveChangesAsync();
+            //_context.SaveChanges();
             return create.Entity;
         }
 
@@ -67,6 +67,11 @@ namespace MedicalCards.DAL.Repositories
             EntityEntry<TEntity> update = set.Update(item);
             await _context.SaveChangesAsync();
             return update.Entity;
+        }
+
+        public Task Save()
+        {
+            return _context.SaveChangesAsync();
         }
     }
 }
