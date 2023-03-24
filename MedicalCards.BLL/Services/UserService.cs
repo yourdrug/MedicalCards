@@ -15,6 +15,8 @@ namespace MedicalCards.BLL.Services
     public class UserService : IDisposable
     {
         private readonly IUserRepository userRepository;
+        private readonly IPatientRepository patientRepository;
+        private readonly IDoctorRepository doctorRepository;
 
         private string GetSHA256Hash(string password)
         {
@@ -33,9 +35,11 @@ namespace MedicalCards.BLL.Services
                 return builder.ToString();
             }
         }
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IPatientRepository patientRepository, IDoctorRepository doctorRepository)
         { 
             this.userRepository = userRepository;
+            this.patientRepository = patientRepository;
+            this.doctorRepository = doctorRepository;
         }
 
         public async Task<User> Authentificate(string login, string password)
@@ -82,6 +86,22 @@ namespace MedicalCards.BLL.Services
             await userRepository.Save();
 
             return user2;
+        }
+
+
+        public async Task<Patient> GetPatientByUser(User user)
+        {
+            return await patientRepository.GetByIdWithAllDependencies(user.UserId);
+        }
+
+        public async Task<Doctor> GetDoctorByUser(User user)
+        {
+            return await doctorRepository.GetById(user.UserId);
+        }
+
+        public async Task<Array> GetAllUsers()
+        {
+            return (Array)await userRepository.GetAll();
         }
 
         public void Dispose()

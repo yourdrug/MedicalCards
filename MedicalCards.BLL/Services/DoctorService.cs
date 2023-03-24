@@ -1,4 +1,5 @@
 ﻿using MedicalCards.DAL.Entities;
+using MedicalCards.DAL.Repositories;
 using MedicalCards.DAL.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,42 +9,44 @@ using System.Threading.Tasks;
 
 namespace MedicalCards.BLL.Services
 {
-    public class PatientService: IDisposable
+    public class DoctorService : IDisposable
     {
-        private readonly IPatientRepository patientRepository;
+        private readonly IDoctorRepository doctorRepository;
         private readonly IAddressRepository addressRepository;
 
-        public PatientService(IPatientRepository patientRepository, IAddressRepository addressRepository)
+        public DoctorService(IDoctorRepository doctorRepository, IAddressRepository addressRepository)
         {
-            this.patientRepository = patientRepository;
+            this.doctorRepository = doctorRepository;
             this.addressRepository = addressRepository;
         }
 
-        public async Task<Patient> SignAsPatient(Patient patient, Address address)
+
+        public async Task<Doctor> SignAsDoctor(Doctor doctor, Address address)
         {
 
-            if(await addressRepository.isUniqueAdress(address))
+            if (await addressRepository.isUniqueAdress(address))
             {
                 var Address = await addressRepository.Create(address);
                 await addressRepository.Save();
-                patient.AddressId = Address.AddressId;
+                doctor.AddressId = Address.AddressId;
             }
 
             else
             {
                 var Address = await addressRepository.FindByCredits(address);
-                patient.AddressId = Address.AddressId;
+                doctor.AddressId = Address.AddressId;
             }
-            
-            
-            var patient1 = await patientRepository.Create(patient);
-            await patientRepository.Save();
-            return patient1;
+
+
+            var temp_doctor = await doctorRepository.Create(doctor);
+            await doctorRepository.Save();
+            return temp_doctor;
         }
+
 
         public void Dispose()
         {
-            patientRepository.Dispose();
+            doctorRepository.Dispose();
             addressRepository.Dispose();
         }
     }

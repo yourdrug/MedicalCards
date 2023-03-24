@@ -19,7 +19,9 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<User> FindByCredits(string login, string hash)
         {
-            return await set.SingleAsync(user => user.Login == login && user.Hash == hash);
+            var user = await set.SingleAsync(user => user.Login == login && user.Hash == hash);
+            
+            return user;
         }
 
         public async Task<bool> isUniqueLogin(string login)
