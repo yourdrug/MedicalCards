@@ -5,8 +5,201 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
-        Title="DoctorWindow" Height="450" Width="800">
+        Title="DoctorWindow" Height="800" Width="1400"
+        Background="#FF2E3844" WindowStyle="None" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="TextB" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <SolidColorBrush x:Key="TextBox.Static.Border1" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border1" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border1" Color="#FF569DE5"/>
+        <Style x:Key="FocusVisual1">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background1" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border1" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background1" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border1" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background1" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border1" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383"/>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="750"/>
+        </Grid.RowDefinitions>
+        <TextBlock Foreground="White" x:Name="FullName"
+                   Grid.Row="0" Margin="967,10,170,60" TextAlignment="Right" Padding="12" 
+                   FontFamily="Calibri" FontSize="20"/>
+        <Button Content="Выйти" HorizontalAlignment="Left" 
+                BorderThickness="0" Width="145" Height="34" 
+                VerticalAlignment="Top" Background="#FF435971" Grid.Row="0"
+                Foreground="#FF8A99A8" Margin="1245,18,0,0" />
+        <Button Content="Мои исследования" HorizontalAlignment="Left" 
+            BorderThickness="0" Width="224" Height="60" 
+            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+            Foreground="#FF8A99A8" Margin="61,61,0,0" Click="Researches_Button_Click" />
+
+        <Button Content="Мой диагноз" HorizontalAlignment="Left" 
+            BorderThickness="0" Width="224" Height="60" 
+            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+            Foreground="#FF8A99A8" Margin="61,149,0,0" Click="Diagnosis_Button_Click" />
+
+        <Button Content="Мои аллергии" HorizontalAlignment="Left" 
+            BorderThickness="0" Width="224" Height="60" 
+            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+            Foreground="#FF8A99A8" Margin="61,240,0,0" Click="Allergy_Button_Click" />
+
+        <Button Content="Мои данные" HorizontalAlignment="Left" 
+            BorderThickness="0" Width="224" Height="60" 
+            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+            Foreground="#FF8A99A8" Margin="61,332,0,0" Click="Features_Button_Click" />
+
+        <Button Content="Мои приемы" HorizontalAlignment="Left" 
+            BorderThickness="0" Width="224" Height="60" 
+            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+            Foreground="#FF8A99A8" Margin="61,420,0,0" Click="Appointment_Button_Click" />
+
+        <DataGrid Grid.Row="1" Margin="337,60,153,311"
+                  x:Name="ResearchGrid" AutoGenerateColumns="False" 
+                  Visibility="Hidden" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding ResearchId}" />
+                <DataGridTextColumn Header="Название"  Width="150" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Тип"  Width="130" Binding="{Binding TypeOfResearch}"/>
+                <DataGridTextColumn Header="Короткий результат"  Width="*" Binding="{Binding ShortResult}"/>
+                <DataGridTextColumn Header="Результат"  Width="*" Binding="{Binding Result}"/>
+                <DataGridTextColumn Header="Комментарий"  Width="*" Binding="{Binding Comment}"/>
+                <DataGridTextColumn Header="Дата проведения"  Width="120" Binding="{Binding DateOfResearch}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Row="1" Margin="337,60,153,311"
+                  x:Name="DiagnosisGrid" AutoGenerateColumns="False" Visibility="Hidden" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding DiagnosisId}" />
+                <DataGridTextColumn Header="Название"  Width="150" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Фамилия доктора"  Width="*" Binding="{Binding Doctor.LastName}"/>
+                <DataGridTextColumn Header="Комментарий"  Width="*" Binding="{Binding Comment}"/>
+                <DataGridTextColumn Header="Дата постановки"  Width="120" Binding="{Binding DateOfDiagnosis}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Row="1" Margin="337,60,153,311"
+                  x:Name="AllergiesGrid" AutoGenerateColumns="False" Visibility="Hidden" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding AllergyId}" />
+                <DataGridTextColumn Header="Аллерген"  Width="150" Binding="{Binding Allergen}"/>
+                <DataGridTextColumn Header="Реакция"  Width="*" Binding="{Binding Reaction}"/>
+                <DataGridTextColumn Header="Степень тяжести"  Width="*" Binding="{Binding Severty}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Row="1" Margin="337,60,153,311"
+                  x:Name="FeaturesGrid" AutoGenerateColumns="False" 
+                  Visibility="Hidden" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding FeaturesId}" />
+                <DataGridTextColumn Header="Рост"  Width="150" Binding="{Binding Height}"/>
+                <DataGridTextColumn Header="Вес"  Width="130" Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header="Пульс"  Width="*" Binding="{Binding Pulse}"/>
+                <DataGridTextColumn Header="Верхнее давление"  Width="*" Binding="{Binding UpPressure}"/>
+                <DataGridTextColumn Header="Нижнее давление"  Width="*" Binding="{Binding DownPressure}"/>
+                <DataGridTextColumn Header="ИМТ"  Width="120" Binding="{Binding BMI}"/>
+                <DataGridTextColumn Header="Холлестерин"  Width="120" Binding="{Binding Сholesterol}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Row="1" Margin="337,60,153,311"
+                  x:Name="AppointmentGrid" AutoGenerateColumns="False" 
+                  Visibility="Hidden" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding ResearchId}" />
+                <DataGridTextColumn Header="Фамилия пациента"  Width="150" Binding="{Binding Patient.LastName}"/>
+                <DataGridTextColumn Header="Фамилия доктора"  Width="130" Binding="{Binding Doctor.LastName}"/>
+                <DataGridTextColumn Header="Дата и время начала"  Width="*" Binding="{Binding StartAppointment}"/>
+                <DataGridTextColumn Header="Дата и время конца"  Width="*" Binding="{Binding FinishAppointment}"/>
+                <DataGridTextColumn Header="Стоимость"  Width="*" Binding="{Binding Price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
     </Grid>
 </Window>

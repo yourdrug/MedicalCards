@@ -13,8 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AuthWindow;
 using MedicalCards.BLL.Services;
+using MedicalCards.DAL;
 using MedicalCards.DAL.Entities;
 using MedicalCards.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 using WindowsInterfaces;
 
 namespace KURS
@@ -26,7 +28,12 @@ namespace KURS
     {
         public AuthWindow()
         {
+            using (var context = new MedicalCards.DAL.AppContext())
+            {
+                context.Database.Migrate();
+            }
             InitializeComponent();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -58,10 +65,17 @@ namespace KURS
                 using var userService = new UserService(
                     new UserRepository(
                         new MedicalCards.DAL.AppContext()
+                        ),
+                    new PatientRepository(
+                        new MedicalCards.DAL.AppContext()
+                        ),
+                    new DoctorRepository(
+                        new MedicalCards.DAL.AppContext()
                         )
                     );
-
+                
                 User user = await userService.Authentificate(LoginTextBox.Text, PasswordTextBox.Password);
+
                 if(user.Access == User.AccessType.Active)
                 {
 
@@ -69,8 +83,9 @@ namespace KURS
                     {
                         case User.RoleType.Patient:
                             {
+                                Patient patient = await userService.GetPatientByUser(user);
                                 this.Hide();
-                                PatientWindow patientWindow = new PatientWindow();
+                                PatientWindow patientWindow = new PatientWindow(patient);
                                 patientWindow.Owner = this;
                                 patientWindow.Show();
                                 break;
@@ -78,8 +93,9 @@ namespace KURS
 
                         case User.RoleType.Doctor:
                             {
+                                Doctor doctor = await userService.GetDoctorByUser(user);
                                 this.Hide();
-                                DoctorWindow doctorWindow = new DoctorWindow();
+                                DoctorWindow doctorWindow = new DoctorWindow(doctor);
                                 doctorWindow.Owner = this;
                                 doctorWindow.Show();
                                 break;
@@ -94,7 +110,6 @@ namespace KURS
                                 break;
                             }
                     }
-                   
                 }
 
                 else

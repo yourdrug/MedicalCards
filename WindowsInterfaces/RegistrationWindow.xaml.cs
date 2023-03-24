@@ -69,16 +69,22 @@ namespace AuthWindow
                 using var userService = new UserService(
                     new UserRepository(
                         new MedicalCards.DAL.AppContext()
+                        ),
+                    new PatientRepository(
+                        new MedicalCards.DAL.AppContext()
+                        ),
+                    new DoctorRepository(
+                        new MedicalCards.DAL.AppContext()
                         )
                     );
 
 
-               /* MessageBoxResult result = MessageBox.Show("Учетная запись зарегистрирована!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
-                if (result == MessageBoxResult.OK)
-                {
-                    this.Close();
-                    Owner.Show();
-                }*/
+                /* MessageBoxResult result = MessageBox.Show("Учетная запись зарегистрирована!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                 if (result == MessageBoxResult.OK)
+                 {
+                     this.Close();
+                     Owner.Show();
+                 }*/
 
 
                 if (PasswordTextBox.Password != RepeatPasswordTextBox.Password)
@@ -104,7 +110,7 @@ namespace AuthWindow
                         case User.RoleType.Doctor:
                             {
                                 this.Hide();
-                                DoctorRegWindow doctorRegWindow = new DoctorRegWindow();
+                                DoctorRegWindow doctorRegWindow = new DoctorRegWindow(user);
                                 doctorRegWindow.Owner = this;
                                 doctorRegWindow.Show();
                                 break;

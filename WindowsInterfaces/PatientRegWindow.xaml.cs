@@ -26,7 +26,6 @@ namespace WindowsInterfaces
 
         private User temp_user { get; set; } 
 
-        private Patient patient { get; set; }
         public string[] FamilyStatusTyping { get; set; }
 
         public PatientRegWindow(User user)
@@ -43,6 +42,12 @@ namespace WindowsInterfaces
             {
                 using var userService = new UserService(
                     new UserRepository(
+                        new MedicalCards.DAL.AppContext()
+                        ),
+                    new PatientRepository(
+                        new MedicalCards.DAL.AppContext()
+                        ),
+                    new DoctorRepository(
                         new MedicalCards.DAL.AppContext()
                         )
                     );
@@ -82,10 +87,14 @@ namespace WindowsInterfaces
                 temp_address.HouseNumber = Convert.ToInt32(HouseNumTextBox.Text);
                 temp_address.FlatNumber = Convert.ToInt32(FlatNumTextBox.Text);
                 
-                patient = await patientService.SignAsPatient(temp_patient, temp_address);
+                var patient = await patientService.SignAsPatient(temp_patient, temp_address);
 
-                Owner.Show();
+                
                 this.Close();
+                PatientWindow patientWindow = new PatientWindow(patient);
+                patientWindow.Owner = this;
+                patientWindow.Show();
+
             }
         }
     }
