@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MedicalCards.DAL.Tests
 {
-   // public class UserRepositoryTests : RepositoryTests<User>
-    //{
-        /*public UserRepositoryTests() : base(context => new UserRepository(context))
+   public class UserRepositoryTests : RepositoryTests<User>
+   {
+        public UserRepositoryTests() : base(context => new UserRepository(context))
         {
             repository = new UserRepository(_context);
-        }*/
-    //}
+        }
+   }
 }

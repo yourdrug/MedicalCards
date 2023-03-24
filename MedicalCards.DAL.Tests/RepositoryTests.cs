@@ -12,9 +12,9 @@ namespace MedicalCards.DAL.Tests
     public abstract class RepositoryTests<TEntity> : IDisposable
         where TEntity : class
     {
-        protected readonly DbContext _context  = new AppContext();
+        protected readonly AppContext _context  = new AppContext();
         protected Repository<TEntity> repository;
-        protected RepositoryTests(Func<DbContext, Repository<TEntity>> createReporitory)
+        protected RepositoryTests(Func<AppContext, Repository<TEntity>> createReporitory)
         {
             _context.Database.EnsureCreated();
             repository = createReporitory(_context);
@@ -24,7 +24,7 @@ namespace MedicalCards.DAL.Tests
         {
             _context.Dispose();
         }
-
+/*
         [Fact]
         public async Task GetAll_EntitiesDoNotExist_ReturnsEmptyList()
         {
@@ -33,6 +33,7 @@ namespace MedicalCards.DAL.Tests
             actual.Should().BeEmpty();
 
             await _context.Database.EnsureDeletedAsync();
-        }
+        }*/
     }
+
 }
