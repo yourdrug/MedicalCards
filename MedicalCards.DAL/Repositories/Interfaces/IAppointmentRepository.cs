@@ -9,6 +9,9 @@ namespace MedicalCards.DAL.Repositories.Interfaces
 {
     public interface IAppointmentRepository:IRepository<Appointment>
     {
+        public Task<List<Medicines?>?> GetMedicinesByAppointment(Appointment appointment);
+
+        public Task<List<Appointment?>?> GetAllWithAllDependencies();
 
     }
 }

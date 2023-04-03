@@ -15,5 +15,10 @@ namespace MedicalCards.DAL.Repositories
         {
             
         }
+
+        public async Task<Diagnosis> GetByPatient(int id)
+        {
+            return await set.SingleAsync(d => d.PatientId == id);
+        }
     }
 }

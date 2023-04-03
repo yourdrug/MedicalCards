@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MedicalCards.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial14 : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,30 +35,11 @@ namespace MedicalCards.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Price = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Medicines", x => x.MedicinesId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Researches",
-                columns: table => new
-                {
-                    ResearchId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PatientId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    TypeOfResearch = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ShortResult = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Result = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Comment = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    DateOfResearch = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Researches", x => x.ResearchId);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,9 +49,9 @@ namespace MedicalCards.DAL.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Login = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Hash = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Salt = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Role = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    Hash = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    Access = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,7 +69,7 @@ namespace MedicalCards.DAL.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Sex = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DateOfBirth = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -120,8 +101,7 @@ namespace MedicalCards.DAL.Migrations
                     FamilyStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: false),
                     WorkPlace = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ReserchId = table.Column<int>(type: "int", nullable: false)
+                    DateOfBirth = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -148,8 +128,8 @@ namespace MedicalCards.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameOfSpeciality = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     WorkExperience = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FinishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "date", nullable: false),
+                    FinishDate = table.Column<DateTime>(type: "date", nullable: false),
                     DoctorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -195,7 +175,7 @@ namespace MedicalCards.DAL.Migrations
                     DoctorId = table.Column<int>(type: "int", nullable: false),
                     StartAppointment = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FinishAppointment = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Price = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -224,21 +204,20 @@ namespace MedicalCards.DAL.Migrations
                     DoctorId = table.Column<int>(type: "int", nullable: false),
                     PatientId = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    DateOfDiagnosis = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PatientId1 = table.Column<int>(type: "int", nullable: false)
+                    DateOfDiagnosis = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Diagnoses", x => x.DiagnosisId);
                     table.ForeignKey(
-                        name: "FK_Diagnoses_Doctors_PatientId",
-                        column: x => x.PatientId,
+                        name: "FK_Diagnoses_Doctors_DoctorId",
+                        column: x => x.DoctorId,
                         principalTable: "Doctors",
                         principalColumn: "DoctorId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Diagnoses_Patients_PatientId1",
-                        column: x => x.PatientId1,
+                        name: "FK_Diagnoses_Patients_PatientId",
+                        column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "PatientId",
                         onDelete: ReferentialAction.Restrict);
@@ -271,26 +250,27 @@ namespace MedicalCards.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PatientResearch",
+                name: "Researches",
                 columns: table => new
                 {
-                    PatientId = table.Column<int>(type: "int", nullable: false),
                     ResearchId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PatientId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    TypeOfResearch = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ShortResult = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Result = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DateOfResearch = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PatientResearch", x => new { x.PatientId, x.ResearchId });
+                    table.PrimaryKey("PK_Researches", x => x.ResearchId);
                     table.ForeignKey(
-                        name: "FK_PatientResearch_Patients_PatientId",
+                        name: "FK_Researches_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "PatientId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PatientResearch_Researches_ResearchId",
-                        column: x => x.ResearchId,
-                        principalTable: "Researches",
-                        principalColumn: "ResearchId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -336,14 +316,14 @@ namespace MedicalCards.DAL.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Diagnoses_PatientId",
+                name: "IX_Diagnoses_DoctorId",
                 table: "Diagnoses",
-                column: "PatientId");
+                column: "DoctorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Diagnoses_PatientId1",
+                name: "IX_Diagnoses_PatientId",
                 table: "Diagnoses",
-                column: "PatientId1",
+                column: "PatientId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -356,11 +336,6 @@ namespace MedicalCards.DAL.Migrations
                 table: "Features",
                 column: "PatientId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PatientResearch_ResearchId",
-                table: "PatientResearch",
-                column: "ResearchId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Patients_AddressId",
@@ -377,6 +352,11 @@ namespace MedicalCards.DAL.Migrations
                 table: "Qualifications",
                 column: "DoctorId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Researches_PatientId",
+                table: "Researches",
+                column: "PatientId");
         }
 
         /// <inheritdoc />
@@ -390,9 +370,6 @@ namespace MedicalCards.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Features");
-
-            migrationBuilder.DropTable(
-                name: "PatientResearch");
 
             migrationBuilder.DropTable(
                 name: "PrescriptionOfMedicines");

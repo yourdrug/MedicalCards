@@ -11,6 +11,7 @@ namespace MedicalCards.DAL.Repositories
 {
     public class PatientRepository : Repository<Patient>,IPatientRepository
     {
+        
         public PatientRepository(AppContext context) : base (context)
         {
             
@@ -23,5 +24,6 @@ namespace MedicalCards.DAL.Repositories
                       .Include(p => p.Appointment)
                       .Include(p => p.Diagnosis).SingleAsync(p => p.PatientId == id);
         }
+
     }
 }

@@ -139,7 +139,7 @@
 
         <DataGrid Grid.Row="1" Margin="337,60,153,311"
                   x:Name="ResearchGrid" AutoGenerateColumns="False" 
-                  Visibility="Hidden" IsReadOnly="True">
+                  Visibility="Hidden" IsReadOnly="True" MouseDoubleClick="ResearchGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="40" Binding="{Binding ResearchId}" />
                 <DataGridTextColumn Header="Название"  Width="150" Binding="{Binding Name}"/>
@@ -151,16 +151,35 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid Grid.Row="1" Margin="337,60,153,311"
-                  x:Name="DiagnosisGrid" AutoGenerateColumns="False" Visibility="Hidden" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding DiagnosisId}" />
-                <DataGridTextColumn Header="Название"  Width="150" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Фамилия доктора"  Width="*" Binding="{Binding Doctor.LastName}"/>
-                <DataGridTextColumn Header="Комментарий"  Width="*" Binding="{Binding Comment}"/>
-                <DataGridTextColumn Header="Дата постановки"  Width="120" Binding="{Binding DateOfDiagnosis}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <TextBlock Grid.Row="1" Background="White" x:Name="Name" Visibility="Hidden"
+                   IsHitTestVisible="False" Padding="13,10" Margin="731,68,251,636"
+                   FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescName" Visibility="Hidden"
+                   IsHitTestVisible="False" Padding="13,10" Margin="544,68,690,636"
+                   FontSize="16" Text="Название диагноза" Foreground="White" FontWeight="Bold" />
+
+        <TextBlock Grid.Row="1" Background="White" x:Name="FIO" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="731,149,251,555"
+            FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescFIO" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="544,149,690,555"
+            FontSize="16" Text="ФИО врача" Foreground="White" FontWeight="Bold" />
+
+        <TextBlock Grid.Row="1" Background="White" x:Name="Comment" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="731,232,251,472"
+            FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescComment" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="544,232,690,472"
+            FontSize="16" Text="Комментарий" Foreground="White" FontWeight="Bold" />
+
+        <TextBlock Grid.Row="1" Background="White" x:Name="Date" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="731,315,251,389"
+            FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescDate" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="544,313,690,391"
+            FontSize="16" Text="Дата постановки" Foreground="White" FontWeight="Bold" />
+
+
 
         <DataGrid Grid.Row="1" Margin="337,60,153,311"
                   x:Name="AllergiesGrid" AutoGenerateColumns="False" Visibility="Hidden" IsReadOnly="True">
@@ -172,24 +191,59 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid Grid.Row="1" Margin="337,60,153,311"
-                  x:Name="FeaturesGrid" AutoGenerateColumns="False" 
-                  Visibility="Hidden" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding FeaturesId}" />
-                <DataGridTextColumn Header="Рост"  Width="150" Binding="{Binding Height}"/>
-                <DataGridTextColumn Header="Вес"  Width="130" Binding="{Binding Weight}"/>
-                <DataGridTextColumn Header="Пульс"  Width="*" Binding="{Binding Pulse}"/>
-                <DataGridTextColumn Header="Верхнее давление"  Width="*" Binding="{Binding UpPressure}"/>
-                <DataGridTextColumn Header="Нижнее давление"  Width="*" Binding="{Binding DownPressure}"/>
-                <DataGridTextColumn Header="ИМТ"  Width="120" Binding="{Binding BMI}"/>
-                <DataGridTextColumn Header="Холлестерин"  Width="120" Binding="{Binding Сholesterol}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <TextBlock Grid.Row="1" Background="White" x:Name="Height" Visibility="Hidden"
+                   IsHitTestVisible="False" Padding="13,10" Margin="731,43,251,661"
+                   FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescHeight" Visibility="Hidden"
+                   IsHitTestVisible="False" Padding="13,10" Margin="544,43,690,661"
+                   FontSize="16" Text="Рост" Foreground="White" FontWeight="Bold" />
+
+        <TextBlock Grid.Row="1" Background="White" x:Name="Weight" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="731,119,251,585"
+            FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescWeight" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="544,119,690,585"
+            FontSize="16" Text="Вес" Foreground="White" FontWeight="Bold" />
+
+        <TextBlock Grid.Row="1" Background="White" x:Name="Pulse" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="731,198,251,506"
+            FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescPulse" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="544,198,690,506"
+            FontSize="16" Text="Пульс" Foreground="White" FontWeight="Bold" />
+
+        <TextBlock Grid.Row="1" Background="White" x:Name="BMI" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="731,278,251,426"
+            FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescBMI" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="544,278,690,426"
+            FontSize="16" Text="ИМТ" Foreground="White" FontWeight="Bold" />
+
+        <TextBlock Grid.Row="1" Background="White" x:Name="UpPressure" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="731,360,251,344"
+            FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescUpPressure" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="544,360,694,344"
+            FontSize="16" Text="Верхнее давление" Foreground="White" FontWeight="Bold" RenderTransformOrigin="0.687,0.478" />
+
+        <TextBlock Grid.Row="1" Background="White" x:Name="DownPressure" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="731,440,251,264"
+            FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescDownPressure" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="544,440,691,264"
+            FontSize="16" Text="Нижние давление" Foreground="White" FontWeight="Bold" RenderTransformOrigin="0.488,-0.109" />
+
+        <TextBlock Grid.Row="1" Background="White" x:Name="Chorosterol" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="731,518,251,186"
+            FontSize="14" Text="Нет данных" Foreground="Black" />
+        <TextBlock Grid.Row="1" x:Name="DescChorosterol" Visibility="Hidden"
+            IsHitTestVisible="False" Padding="13,10" Margin="544,516,690,188"
+            FontSize="16" Text="Холлестерин" Foreground="White" FontWeight="Bold" />
+
 
         <DataGrid Grid.Row="1" Margin="337,60,153,311"
                   x:Name="AppointmentGrid" AutoGenerateColumns="False" 
-                  Visibility="Hidden" IsReadOnly="True">
+                  Visibility="Hidden" IsReadOnly="True" MouseDoubleClick="AppointmentGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="40" Binding="{Binding ResearchId}" />
                 <DataGridTextColumn Header="Фамилия пациента"  Width="150" Binding="{Binding Patient.LastName}"/>
@@ -199,6 +253,7 @@
                 <DataGridTextColumn Header="Стоимость"  Width="*" Binding="{Binding Price}"/>
             </DataGrid.Columns>
         </DataGrid>
+       
 
 
     </Grid>

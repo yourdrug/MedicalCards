@@ -1,11 +1,11 @@
-﻿<Window x:Class="WindowsInterfaces.DoctorWindow"
+﻿<Window x:Class="WindowsInterfaces.AddAppointmentWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
-        Title="DoctorWindow" Height="800" Width="1400"
+        Title="AddAppointmentWindow"  Height="550" Width="800" 
         Background="#FF2E3844" WindowStyle="None" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
@@ -102,57 +102,76 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
-            <RowDefinition Height="750"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="450"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TextBlock Foreground="White" x:Name="FullName"
-                   Grid.Row="0" Margin="967,10,170,60" TextAlignment="Right" Padding="12" 
-                   FontFamily="Calibri" FontSize="20"/>
-        <Button Content="Выйти" HorizontalAlignment="Left" 
-                BorderThickness="0" Width="145" Height="34" 
-                VerticalAlignment="Top" Background="#FF435971" Grid.Row="0"
-                Foreground="#FF8A99A8" Margin="1245,18,0,0" Click="Button_Click" />
 
-        <Button Content="Мои приемы" HorizontalAlignment="Left" 
-            BorderThickness="0" Width="224" Height="60" 
-            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
-            Foreground="#FF8A99A8" Margin="60,60,0,0" Click="Appointment_Button_Click" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="330"/>
+            <ColumnDefinition Width="470"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="PriceTextBox"
+            VerticalAlignment="Top" BorderBrush="Black" 
+            Margin="50,87,0,0" Height="42" HorizontalAlignment="Left" Width="260"/>
+        <TextBlock Grid.Row="1" Grid.Column="0"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,90,20,322"
+            FontSize="14" Text="Введите стоимость" Foreground="#FF464545">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=PriceTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
-        <Button Content="Поставленные диагнозы" HorizontalAlignment="Left" 
-            BorderThickness="0" Width="224" Height="60" 
-            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
-            Foreground="#FF8A99A8" Margin="60,164,0,0" Click="Diagnosis_Button_Click" />
-        
-        <DataGrid Grid.Row="1" Margin="337,60,153,311"
-                  x:Name="DiagnosisGrid" AutoGenerateColumns="False" 
-                  Visibility="Hidden" IsReadOnly="True">
+        <TextBlock Grid.Row="1" Grid.Column="0"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,24,20,388"
+            FontSize="14" Background="White"  x:Name="PatientTextBlock"
+            Text="Выберите пациента" Foreground="#FF464545">
+        </TextBlock>
+
+        <DataGrid Grid.Row="1" Grid.Column="1" Margin="10,10,10,185"
+                  x:Name="PatientsGrid" AutoGenerateColumns="False" 
+                  Visibility="Visible" IsReadOnly="True" MouseDoubleClick="PatientsGrid_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding DiagnosisId}" />
-                <DataGridTextColumn Header="Название"  Width="150" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Фамилия доктора"  Width="*" Binding="{Binding Doctor.LastName}"/>
-                <DataGridTextColumn Header="Фамилия пациента"  Width="*" Binding="{Binding Patient.LastName}"/>
-                <DataGridTextColumn Header="Комментарий"  Width="*" Binding="{Binding Comment}"/>
-                <DataGridTextColumn Header="Дата постановки"  Width="120" Binding="{Binding DateOfDiagnosis}"/>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding PatientId}" />
+                <DataGridTextColumn Header="Фамилия"  Width="*" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Имя"  Width="130" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Отчество"  Width="150" Binding="{Binding Patronymic}"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid Grid.Row="1" Margin="337,60,153,311"
-                  x:Name="AppointmentGrid" AutoGenerateColumns="False" 
-                  Visibility="Hidden" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding AppointmentId}" />
-                <DataGridTextColumn Header="Фамилия пациента"  Width="170" Binding="{Binding Patient.LastName}"/>
-                <DataGridTextColumn Header="Фамилия доктора"  Width="170" Binding="{Binding Doctor.LastName}"/>
-                <DataGridTextColumn Header="Дата и время начала"  Width="200" Binding="{Binding DateTimeAppointment}"/>
-                <DataGridTextColumn Header="Стоимость"  Width="*" Binding="{Binding Price}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        
-        <Button Content="Добавить" HorizontalAlignment="Left" 
-            BorderThickness="0" Width="190" Height="39" 
-            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
-            Foreground="#FF8A99A8" Margin="337,477,0,0" Click="Add_Button_Click" />
+        <Label Grid.Row="2" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
+               Margin="0,10,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
+               Height="40" Width="149" Foreground="#FFC7CDD2"/>
 
+        <Button Content="Завершить" HorizontalAlignment="Left" 
+                BorderThickness="0" Margin="50,372,0,0" Width="260" Height="40" 
+                VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+                Foreground="#FF8A99A8" Click="Finish_Button_Click"/>
+
+        <DatePicker HorizontalAlignment="Left" FontFamily="Calibri" FontSize="22"
+                    BorderThickness="0" x:Name="DateOfAppointment"
+                    Margin="50,161,0,0" Grid.Row="1" VerticalAlignment="Top" Width="260" Height="33" />
+
+        <Button Grid.Row="1" Content="Назад" HorizontalAlignment="Center" 
+            BorderThickness="2" Margin="0,372,0,0" Width="260" Height="40" 
+            VerticalAlignment="Top" Background="#FF2E3844"
+            Foreground="#FF455468" BorderBrush="#FF455468" Grid.Column="1" Click="Cancel_Button_Click"/>
+
+        <Button Grid.Row="1" Content="Показать" HorizontalAlignment="Left" 
+            BorderThickness="2" Margin="10,292,0,0" Width="199" Height="40" 
+            VerticalAlignment="Top" Background="#FF2E3844"
+            Foreground="#FF455468" BorderBrush="#FF455468" Grid.Column="1" Click="Show_Button_Click"/>
+        <Button Grid.Row="1" Content="Добавить лекарство" HorizontalAlignment="Left" 
+            BorderThickness="2" Margin="247,292,0,0" Width="213" Height="40" 
+            VerticalAlignment="Top" Background="#FF2E3844"
+            Foreground="#FF455468" BorderBrush="#FF455468" Grid.Column="1" Click="Add_Button_Click"/>
 
     </Grid>
 </Window>

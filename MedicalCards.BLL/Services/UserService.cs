@@ -83,7 +83,7 @@ namespace MedicalCards.BLL.Services
             user.Access = User.AccessType.Active;
 
             User user2 = await userRepository.Create(user);
-            await userRepository.Save();
+            userRepository.Save();
 
             return user2;
         }
@@ -96,7 +96,12 @@ namespace MedicalCards.BLL.Services
 
         public async Task<Doctor> GetDoctorByUser(User user)
         {
-            return await doctorRepository.GetById(user.UserId);
+            return await doctorRepository.GetByIdWithAllDependencies(user.UserId);
+        }
+
+        public async Task<User> DeleteById(int id)
+        {
+            return await userRepository.Delete(id);
         }
 
         public async Task<Array> GetAllUsers()

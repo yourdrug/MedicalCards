@@ -1,7 +1,11 @@
-﻿using MedicalCards.DAL.Entities;
+﻿using AuthWindow;
+using MedicalCards.BLL.Services;
+using MedicalCards.DAL.Entities;
+using MedicalCards.DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,53 +29,72 @@ namespace WindowsInterfaces
         {
             InitializeComponent();
             temp_doctor = doctor;
+            FullName.Text = new string(temp_doctor.LastName + " " + temp_doctor.FirstName);
         }
 
-        private void Researches_Button_Click(object sender, RoutedEventArgs e)
+        private async void Diagnosis_Button_Click(object sender, RoutedEventArgs e)
         {
-            var reserches_list = temp_doctor.Research;
-            ResearchGrid.ItemsSource = reserches_list;
+            {
+                using var diagnosisService = new DiagnosisService(
+                           new DiagnosisRepository(
+                               new MedicalCards.DAL.AppContext()
+                               ),
+                           new DoctorRepository(
+                               new MedicalCards.DAL.AppContext()
+                               )
+                           );
+                var diagnosis_list = await  diagnosisService.GetDiagnosisByDoctor(temp_doctor.DoctorId);
+                DiagnosisGrid.ItemsSource = (System.Collections.IEnumerable)diagnosis_list;
+                AppointmentGrid.Visibility = Visibility.Hidden;
+                DiagnosisGrid.Visibility = Visibility.Visible;
+            }
+        }
+
+        private async void Appointment_Button_Click(object sender, RoutedEventArgs e)
+        {
+            using var POMS = new PrescriptionOfMedicinesService(
+                   new PrescriptionOfMedicinesRepository(
+                       new MedicalCards.DAL.AppContext()
+                       ),
+                   new AppointmentRepository(
+                       new MedicalCards.DAL.AppContext()
+                       ),
+                   new MedicinesRepository(
+                       new MedicalCards.DAL.AppContext()
+                       )
+                   );
+
+
+            var appointment_list = await POMS.GetAllAppointments();
+            AppointmentGrid.ItemsSource = appointment_list;
             DiagnosisGrid.Visibility = Visibility.Hidden;
-            AllergiesGrid.Visibility = Visibility.Hidden;
-            FeaturesGrid.Visibility = Visibility.Hidden;
-            ResearchGrid.Visibility = Visibility.Visible;
+            AppointmentGrid.Visibility = Visibility.Visible;
         }
 
-        private void Diagnosis_Button_Click(object sender, RoutedEventArgs e)
+        private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            var diagnosis_list = temp_doctor.Diagnosis;
-            DiagnosisGrid.ItemsSource = (System.Collections.IEnumerable)diagnosis_list;
-            AllergiesGrid.Visibility = Visibility.Hidden;
-            ResearchGrid.Visibility = Visibility.Hidden;
-            FeaturesGrid.Visibility = Visibility.Hidden;
-            DiagnosisGrid.Visibility = Visibility.Visible;
+            if(AppointmentGrid.Visibility == Visibility.Visible)
+            {
+                AddAppointmentWindow addAppointmentWindow = new AddAppointmentWindow(temp_doctor);
+                addAppointmentWindow.Show();
+                addAppointmentWindow.Owner = this;
+                this.Hide();
+                
+            }
+
+           else if(DiagnosisGrid.Visibility == Visibility.Visible)
+           {
+                AddDiagnosisWindow addDiagnosisWindow = new AddDiagnosisWindow(temp_doctor);
+                addDiagnosisWindow.Show();
+                addDiagnosisWindow.Owner = this;
+                this.Hide();
+           }
+           
         }
 
-        private void Allergy_Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var allergy_list = temp_doctor.Allergy;
-            AllergiesGrid.ItemsSource = allergy_list;
-            DiagnosisGrid.Visibility = Visibility.Hidden;
-            ResearchGrid.Visibility = Visibility.Hidden;
-            FeaturesGrid.Visibility = Visibility.Hidden;
-            AllergiesGrid.Visibility = Visibility.Visible;
-        }
-
-        private void Features_Button_Click(object sender, RoutedEventArgs e)
-        {
-            var features_list = temp_doctor.Features;
-            AllergiesGrid.ItemsSource = (System.Collections.IEnumerable)features_list;
-            DiagnosisGrid.Visibility = Visibility.Hidden;
-            ResearchGrid.Visibility = Visibility.Hidden;
-            AllergiesGrid.Visibility = Visibility.Hidden;
-            FeaturesGrid.Visibility = Visibility.Visible;
-        }
-
-        private void Appointment_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-
-
+            
         }
     }
 

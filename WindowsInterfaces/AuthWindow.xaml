@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KURS"
         mc:Ignorable="d"
-        Title="AuthWindow" Height="400" Width="360" 
-        Background="#FF2E3844" WindowStyle="None" ResizeMode="NoResize">
+        Title="AuthWindow" Height="450" Width="380" 
+        Background="#FF2E3844" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -161,7 +161,7 @@
                  VerticalAlignment="Top" BorderBrush="Black" 
                  Margin="50,10,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
         <TextBlock Grid.Row="1" 
-                   IsHitTestVisible="False" Padding="13,10" Margin="50,10,50,200"
+                   IsHitTestVisible="False" Padding="13,10" Margin="50,10,70,200"
                    FontSize="14" Text="Введите логин" Foreground="#FF464545">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -177,23 +177,23 @@
 
 
         <PasswordBox Style="{DynamicResource PassB}" 
-                     Margin="50,60,50,150" x:Name="PasswordTextBox" Width="260"
+                     Margin="50,60,55,150" x:Name="PasswordTextBox" Width="260"
                      Background="White" Grid.Row="1"/>
 
         <TextBlock Grid.Row="1" x:Name="Watermark"
-            IsHitTestVisible="False" Padding="13,10" Margin="50,60,50,150"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,60,62,150"
             FontSize="14" Text="Введите пароль" Foreground="#FF464545"/>
 
 
-        <Button Content="Войти" HorizontalAlignment="Center" 
-                BorderThickness="0" Margin="0,125,0,0" Width="260" Height="40" 
+        <Button Content="Войти" HorizontalAlignment="Left" 
+                BorderThickness="0" Margin="50,125,0,0" Width="260" Height="40" 
                 VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
                 Foreground="#FF8A99A8" Click="SignIn_Click"/>
 
         <Line Grid.Row="1" Stroke="#FFC7CDD2" StrokeThickness="2" X1="50" Y1="185" X2="310" Y2="185"/>
 
-        <Button Grid.Row="1" Content="Зарегистрироваться" HorizontalAlignment="Center" 
-                BorderThickness="2" Margin="0,200,0,0" Width="260" Height="40" 
+        <Button Grid.Row="1" Content="Зарегистрироваться" HorizontalAlignment="Left" 
+                BorderThickness="2" Margin="50,200,0,0" Width="260" Height="40" 
                 VerticalAlignment="Top" Click="Button_Click" Background="#FF2E3844"
                 Foreground="#FF455468" BorderBrush="#FF455468"/>
 

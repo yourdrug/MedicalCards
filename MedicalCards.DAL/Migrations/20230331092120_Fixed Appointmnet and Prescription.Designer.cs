@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalCards.DAL.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20230320191831_update DateTime")]
-    partial class updateDateTime
+    [Migration("20230331092120_Fixed Appointmnet and Prescription")]
+    partial class FixedAppointmnetandPrescription
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,20 +95,17 @@ namespace MedicalCards.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"));
 
+                    b.Property<DateTime>("DateTimeAppointment")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("FinishAppointment")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
-
-                    b.Property<DateTime>("StartAppointment")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("AppointmentId");
 
@@ -330,9 +327,6 @@ namespace MedicalCards.DAL.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("DateOfAppointment")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("AppointmentId", "MedicinesId");
 
                     b.HasIndex("MedicinesId");
@@ -482,13 +476,13 @@ namespace MedicalCards.DAL.Migrations
                     b.HasOne("MedicalCards.DAL.Entities.Doctor", "Doctor")
                         .WithMany("Diagnosis")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MedicalCards.DAL.Entities.Patient", "Patient")
                         .WithOne("Diagnosis")
                         .HasForeignKey("MedicalCards.DAL.Entities.Diagnosis", "PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Doctor");

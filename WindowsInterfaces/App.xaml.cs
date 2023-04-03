@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicalCards.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,6 +12,13 @@ namespace AuthWindow
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
+    /// 
+
+    public static class Data
+    {
+        public static List<Medicines> medicines = new List<Medicines>();
+    }
+
     public partial class App : Application
     {
     }

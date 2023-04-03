@@ -9,6 +9,6 @@ namespace MedicalCards.DAL.Repositories.Interfaces
 {
     public interface IPrescriptionOfMedicinesRepository:IRepository<PrescriptionOfMedicines>
     {
-
+        Task<PrescriptionOfMedicines> GetByIdWithAllDependencies(int id);
     }
 }

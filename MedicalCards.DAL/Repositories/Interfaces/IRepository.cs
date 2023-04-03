@@ -18,6 +18,6 @@ namespace MedicalCards.DAL.Repositories.Interfaces
         Task<T> Delete(int id); // удаление объекта по id
         void Delete(T entry);
         Task<IEnumerable<T>> GetAllByPredicate(Expression<Func<T, bool>> predicate);
-        public Task Save();
+        public void Save();
     }
 }

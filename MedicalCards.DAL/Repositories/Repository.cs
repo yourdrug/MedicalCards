@@ -49,12 +49,12 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<IEnumerable<TEntity>> GetAllByPredicate(Expression<Func<TEntity, bool>> predicate)
         {
-            return await set.AsNoTracking().Where(predicate).ToArrayAsync();
+            return await set.Where(predicate).ToArrayAsync();
         }
 
         public async Task<IEnumerable<TEntity>> GetAll()
         {
-            return await set.AsNoTracking().ToArrayAsync();
+            return await set.ToArrayAsync();
         }
 
         public async Task<TEntity> GetById(int id)
@@ -69,9 +69,9 @@ namespace MedicalCards.DAL.Repositories
             return update.Entity;
         }
 
-        public Task Save()
+        public void Save()
         {
-            return _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

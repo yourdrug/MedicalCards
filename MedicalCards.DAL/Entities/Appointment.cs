@@ -14,12 +14,9 @@ namespace MedicalCards.DAL.Entities
 
         public int DoctorId { get; set; }
 
-        public DateTime StartAppointment { get; set; }
-
-        public DateTime FinishAppointment { get; set; }
+        public DateTime DateTimeAppointment { get; set; }
 
         public double Price { get; set; }
-
 
         public Doctor? Doctor { get; set; }
 

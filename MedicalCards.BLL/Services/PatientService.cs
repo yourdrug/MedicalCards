@@ -25,7 +25,7 @@ namespace MedicalCards.BLL.Services
             if(await addressRepository.isUniqueAdress(address))
             {
                 var Address = await addressRepository.Create(address);
-                await addressRepository.Save();
+                addressRepository.Save();
                 patient.AddressId = Address.AddressId;
             }
 
@@ -37,8 +37,18 @@ namespace MedicalCards.BLL.Services
             
             
             var patient1 = await patientRepository.Create(patient);
-            await patientRepository.Save();
+            patientRepository.Save();
             return patient1;
+        }
+
+        public async Task<Patient> GetPatient(int id)
+        {
+            return await patientRepository.GetById(id);
+        }
+
+        public async Task<Array> GetAll()
+        {
+            return (Array)await patientRepository.GetAll();
         }
 
         public void Dispose()

@@ -13,8 +13,6 @@ namespace MedicalCards.DAL.Entities
 
         public int MedicinesId { get; set; }
 
-        public DateTime DateOfAppointment { get; set; }
-
         [MaxLength(100)]
         public string Comment { get; set; } = null!;
 

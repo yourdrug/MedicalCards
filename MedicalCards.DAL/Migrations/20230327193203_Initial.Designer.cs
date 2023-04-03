@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalCards.DAL.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20230310083004_Fix-shadow-property")]
-    partial class Fixshadowproperty
+    [Migration("20230327193203_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,8 +104,8 @@ namespace MedicalCards.DAL.Migrations
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("StartAppointment")
                         .HasColumnType("datetime2");
@@ -133,7 +133,7 @@ namespace MedicalCards.DAL.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("DateOfDiagnosis")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
@@ -165,7 +165,7 @@ namespace MedicalCards.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -256,8 +256,8 @@ namespace MedicalCards.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.HasKey("MedicinesId");
 
@@ -273,7 +273,7 @@ namespace MedicalCards.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("FamilyStatus")
                         .IsRequired()
@@ -352,7 +352,7 @@ namespace MedicalCards.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FinishDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("NameOfSpeciality")
                         .IsRequired()
@@ -360,7 +360,7 @@ namespace MedicalCards.DAL.Migrations
                         .HasColumnType("nvarchar(70)");
 
                     b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("WorkExperience")
                         .HasColumnType("int");
@@ -386,7 +386,7 @@ namespace MedicalCards.DAL.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("DateOfResearch")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -426,25 +426,21 @@ namespace MedicalCards.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
+                    b.Property<int>("Access")
+                        .HasColumnType("int");
+
                     b.Property<string>("Hash")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.Property<string>("Login")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Salt")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.HasKey("UserId");
 
@@ -486,13 +482,13 @@ namespace MedicalCards.DAL.Migrations
                     b.HasOne("MedicalCards.DAL.Entities.Doctor", "Doctor")
                         .WithMany("Diagnosis")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MedicalCards.DAL.Entities.Patient", "Patient")
                         .WithOne("Diagnosis")
                         .HasForeignKey("MedicalCards.DAL.Entities.Diagnosis", "PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Doctor");

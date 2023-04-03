@@ -90,10 +90,11 @@ namespace WindowsInterfaces
                 var patient = await patientService.SignAsPatient(temp_patient, temp_address);
 
                 
-                this.Close();
+                
                 PatientWindow patientWindow = new PatientWindow(patient);
                 patientWindow.Owner = this;
                 patientWindow.Show();
+                this.Close();
 
             }
         }

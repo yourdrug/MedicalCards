@@ -15,5 +15,17 @@ namespace MedicalCards.DAL.Repositories
         {
             
         }
+
+        public async Task<List<Medicines?>?> GetMedicinesByAppointment(Appointment appointment)
+        {
+            var entry = set.Entry(appointment);
+            await entry.Collection(a=>a.PrescriptionOfMedicines).LoadAsync();
+            return (List<Medicines?>?)entry.Entity?.PrescriptionOfMedicines?.Select(m => m.Medicines);
+        }
+
+        public async Task<List<Appointment?>?> GetAllWithAllDependencies()
+        {
+            return await set.Include(a => a.Doctor).Include(a => a.Patient).Include(a => a.PrescriptionOfMedicines).ToListAsync();
+        }
     }
 }

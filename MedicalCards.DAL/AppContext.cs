@@ -29,7 +29,7 @@ namespace MedicalCards.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=medicalcards;Trusted_Connection=True");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=MC2;Trusted_Connection=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,7 +47,7 @@ namespace MedicalCards.DAL
                 .WithMany(d => d.Appointment)
                 .HasForeignKey(a => a.DoctorId)
                 .OnDelete(DeleteBehavior.Restrict);
-
+/*
             modelBuilder.Entity<Diagnosis>()
                 .HasOne(d => d.Doctor)
                 .WithMany(p => p.Diagnosis)
@@ -57,6 +57,7 @@ namespace MedicalCards.DAL
                 .HasOne(d => d.Patient)
                 .WithOne(p => p.Diagnosis)
                 .OnDelete(DeleteBehavior.Restrict);
+*/
         }
 
     }

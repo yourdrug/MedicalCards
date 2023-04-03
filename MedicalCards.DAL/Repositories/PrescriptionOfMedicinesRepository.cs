@@ -15,5 +15,11 @@ namespace MedicalCards.DAL.Repositories
         {
             
         }
+
+        public async Task<PrescriptionOfMedicines> GetByIdWithAllDependencies(int id)
+        {
+            return await set.Include(p => p.Appointment)
+                            .Include(p => p.Medicines).SingleAsync(p=>p.AppointmentId == id);
+        }
     }
 }
