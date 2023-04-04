@@ -20,5 +20,10 @@ namespace MedicalCards.DAL.Repositories
         {
             return await set.SingleAsync(d => d.PatientId == id);
         }
+
+        public async Task<List<Diagnosis?>?> GetByDoctorWithAllDependencies(int id)
+        {
+            return await set.Include(a => a.Doctor).Include(a => a.Patient).Where(d=>d.DoctorId == id).ToListAsync();
+        }
     }
 }

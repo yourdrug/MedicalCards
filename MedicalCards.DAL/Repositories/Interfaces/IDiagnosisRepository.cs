@@ -10,5 +10,7 @@ namespace MedicalCards.DAL.Repositories.Interfaces
     public interface IDiagnosisRepository:IRepository<Diagnosis>
     {
         public Task<Diagnosis> GetByPatient(int id);
+
+        public Task<List<Diagnosis?>?> GetByDoctorWithAllDependencies(int id);
     }
 }

@@ -25,10 +25,10 @@ namespace MedicalCards.BLL.Services
             diagnosisRepository.Save();
         }
 
-        public async Task<Array> GetDiagnosisByDoctor(int id)
+        public async Task<List<Diagnosis?>> GetDiagnosisByDoctor(int id)
         {
-            var diagnoses_list = await diagnosisRepository.GetAllByPredicate(d => d.DoctorId == id);
-            return (Array)diagnoses_list;
+            var diagnoses_list = await diagnosisRepository.GetByDoctorWithAllDependencies(id);
+            return diagnoses_list;
         }
 
         public async Task<Diagnosis> GetDiagnosisByPatient(int id)
