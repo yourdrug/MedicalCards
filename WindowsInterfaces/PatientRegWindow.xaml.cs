@@ -86,14 +86,11 @@ namespace WindowsInterfaces
                 temp_address.Street = StreetTextBox.Text;
                 temp_address.HouseNumber = Convert.ToInt32(HouseNumTextBox.Text);
                 temp_address.FlatNumber = Convert.ToInt32(FlatNumTextBox.Text);
-                
+
                 var patient = await patientService.SignAsPatient(temp_patient, temp_address);
 
-                
-                
-                PatientWindow patientWindow = new PatientWindow(patient);
-                patientWindow.Owner = this;
-                patientWindow.Show();
+                PatientRegAdditionalWindow patientRegAdditionalWindow = new PatientRegAdditionalWindow(temp_user, patient);
+                patientRegAdditionalWindow.Show();
                 this.Close();
 
             }

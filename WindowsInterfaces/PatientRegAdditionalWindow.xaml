@@ -1,11 +1,11 @@
-﻿<Window x:Class="WindowsInterfaces.PatientRegWindow"
+﻿<Window x:Class="WindowsInterfaces.PatientRegAdditionalWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
-        Title="PatientRegWindow" Height="550" Width="800" 
+        Title="PatientRegAdditionalWindow" Height="550" Width="800" 
         Background="#FF2E3844" WindowStyle="None" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
@@ -112,29 +112,29 @@
             <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
 
-        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="LastNameTextBox"
-                 VerticalAlignment="Top" BorderBrush="Black" 
-                 Margin="50,10,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
+        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="HeightTextBox"
+                 VerticalAlignment="Top" BorderBrush="Black" TextChanged="HeightTextBox_TextChanged"
+                 Margin="50,30,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
         <TextBlock Grid.Row="1" Grid.Column="0"
-                   IsHitTestVisible="False" Padding="13,10" Margin="50,10,90,350"
-                   FontSize="14" Text="Введите фамилию" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
+                   IsHitTestVisible="False" Padding="13,10" Margin="50,30,90,380"
+                   FontSize="14" Text="Введите рост" Foreground="#FF464545" >
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=LastNameTextBox}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=HeightTextBox}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="FirstNameTextBox"
-            VerticalAlignment="Top" BorderBrush="Black" 
-            Margin="50,63,0,0" Height="42" HorizontalAlignment="Left" Width="260"/>
+        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="WeghtTextBox"
+            VerticalAlignment="Top" BorderBrush="Black" TextChanged="WeghtTextBox_TextChanged"
+            Margin="50,83,0,0" Height="42" HorizontalAlignment="Left" Width="260"/>
         <TextBlock Grid.Row="1" Grid.Column="0"
-            IsHitTestVisible="False" Padding="13,10" Margin="50,65,90,347"
-            FontSize="14" Text="Введите имя" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
+            IsHitTestVisible="False" Padding="13,10" Margin="50,85,90,327"
+            FontSize="14" Text="Введите вес" Foreground="#FF464545">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1"/>
@@ -147,66 +147,66 @@
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=FirstNameTextBox}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=WeghtTextBox}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="PatranomicTextBox"
+
+        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="PulseTextBox"
             VerticalAlignment="Top" BorderBrush="Black" 
-            Margin="50,120,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
+            Margin="50,140,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
         <TextBlock Grid.Row="1" Grid.Column="0"
-            IsHitTestVisible="False" Padding="13,10" Margin="50,120,90,290"
-            FontSize="14" Text="Введите отчество" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
+            IsHitTestVisible="False" Padding="13,10" Margin="50,140,90,270"
+            FontSize="14" Text="Введите пульс" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=PatranomicTextBox}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=PulseTextBox}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox Grid.Row="1" Style="{DynamicResource TextB}" x:Name="WorkPlaceTextBox"
+
+        <TextBox Grid.Row="1" Style="{DynamicResource TextB}" x:Name="UpPressureTextBox"
             VerticalAlignment="Top" BorderBrush="Black" 
-            Margin="50,392,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
+            Margin="50,250,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
         <TextBlock Grid.Row="1"
-            IsHitTestVisible="False" Padding="13,10" Margin="50,392,90,18"
-            FontSize="14" Text="Введите место работы" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
+            IsHitTestVisible="False" Padding="13,10" Margin="50,250,90,160"
+            FontSize="14" Text="Введите верхнее давление" Foreground="#FF464545" >
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=WorkPlaceTextBox}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=UpPressureTextBox}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="PhoneTextBox"
+
+        <TextBlock Grid.Row="1"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,303,90,107" x:Name="BMITextBox"
+            FontSize="14" Text="BMI" Foreground="#FF464545" Background="White">
+        </TextBlock>
+
+        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="DownPressureTextBox"
             VerticalAlignment="Top" BorderBrush="Black" 
-            Margin="50,175,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
-        <TextBlock Grid.Row="1" Grid.Column="0"
-            IsHitTestVisible="False" Padding="13,10" Margin="50,175,90,235"
-            FontSize="14" Text="Введите номер телефона" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
+            Margin="50,195,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
+        <TextBlock Grid.Row="1"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,230,90,180"
+            FontSize="14" Text="Введите уровень холестерина" Foreground="#FF464545" >
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=PhoneTextBox}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=СholesterolTextBox}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -214,119 +214,99 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <ComboBox x:Name="SexComboBox" HorizontalAlignment="Left" Margin="50,283,0,0" Grid.Row="1" Grid.Column="0"
-                  FontSize="14" FontFamily="Calibri" BorderBrush="Black" BorderThickness="2"
-                  VerticalAlignment="Top" Width="260" Height="40" Padding="13, 10"
-                  ItemsSource="{Binding sexTyping}"/>
-
-        <ComboBox x:Name="FamilyStatusComboBox" HorizontalAlignment="Left" Margin="50,338,0,0" Grid.Row="1" Grid.Column="0"
-                  FontSize="14" FontFamily="Calibri" BorderBrush="Black" BorderThickness="2"
-                  VerticalAlignment="Top" Width="260" Height="40" Padding="13, 10"
-                  ItemsSource="{Binding FamilyStatusTyping}"/>
         <TextBlock Grid.Row="1" Grid.Column="0"
-            IsHitTestVisible="False" Padding="13,10" Margin="50,10,90,400"
-            FontSize="14" Text="Введите фамилию" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
+            IsHitTestVisible="False" Padding="13,10" Margin="50,195,90,215"
+            FontSize="14" Text="Введите нижнее давление" Foreground="#FF464545">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=LastNameTextBox}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=DownPressureTextBox}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource TextB}" x:Name="CityTextBox"
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource TextB}" x:Name="AllergenTextBox"
             VerticalAlignment="Top" BorderBrush="Black" 
             Margin="0,65,0,0" Height="40" HorizontalAlignment="Center" Width="260"/>
         <TextBlock Grid.Row="1" Grid.Column="1"
             IsHitTestVisible="False" Padding="13,10" Margin="70,65,70,345"
-            FontSize="14" Text="Введите город" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
+            FontSize="14" Text="Введите аллерген" Foreground="#FF464545">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=CityTextBox}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=AllergenTextBox}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource TextB}" x:Name="StreetTextBox"
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource TextB}" x:Name="ReactionTextBox"
             VerticalAlignment="Top" BorderBrush="Black" 
             Margin="0,120,0,0" Height="40" HorizontalAlignment="Center" Width="260"/>
         <TextBlock Grid.Row="1" Grid.Column="1"
             IsHitTestVisible="False" Padding="13,10" Margin="70,120,70,290"
-            FontSize="14" Text="Введите улицу" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
+            FontSize="14" Text="Введите реакцию" Foreground="#FF464545" >
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=StreetTextBox}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=ReactionTextBox}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource TextB}" x:Name="HouseNumTextBox"
-            VerticalAlignment="Top" BorderBrush="Black" 
-            Margin="0,175,0,0" Height="40" HorizontalAlignment="Center" Width="260"/>
-        <TextBlock Grid.Row="1" Grid.Column="1"
-            IsHitTestVisible="False" Padding="13,10" Margin="70,175,70,235"
-            FontSize="14" Text="Введите номер дома" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
-            <TextBlock.Style>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=HouseNumTextBox}" Value="">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource TextB}" x:Name="FlatNumTextBox"
-            VerticalAlignment="Top" BorderBrush="Black" 
-            Margin="0,230,0,0" Height="40" HorizontalAlignment="Center" Width="260"/>
-        <TextBlock Grid.Row="1" Grid.Column="1"
-            IsHitTestVisible="False" Padding="13,10" Margin="70,230,70,180"
-            FontSize="14" Text="Введите номер квартиры" Foreground="#FF464545" RenderTransformOrigin="0.5,0.5">
-            <TextBlock.Style>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=FlatNumTextBox}" Value="">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
+        <ComboBox x:Name="SevertyComboBox" HorizontalAlignment="Center" Margin="0,225,0,0" Grid.Row="1"
+                  FontSize="14" FontFamily="Calibri" BorderBrush="Black" BorderThickness="2"
+                  VerticalAlignment="Top" Width="260" Height="40" Padding="13, 10"
+                  ItemsSource="{Binding severtyTyping}" Grid.Column="1"/>
 
         <Label Grid.Row="2" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
                Margin="0,10,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
                Height="40" Width="149" Foreground="#FFC7CDD2"/>
 
-        <Label Grid.Row="1" Grid.Column="1" Content="Заполните поля адреса" HorizontalAlignment="Center" 
+        <Label Grid.Row="1" Grid.Column="1" Content="Заполните поля аллергии (опционально)" HorizontalAlignment="Center" 
                Margin="0,15,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="24" 
-               Height="40" Width="260" Foreground="#FFC7CDD2"/>
+               Height="40" Width="337" Foreground="#FFC7CDD2"/>
 
-        <Button Content="Далее" HorizontalAlignment="Center" 
+        <Button Content="Завершить" HorizontalAlignment="Center" 
                 BorderThickness="0" Margin="0,303,0,0" Width="260" Height="40" 
                 VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
                 Foreground="#FF8A99A8" Grid.Column="1" Click="Finish_Button_Click"/>
 
         <Line Grid.Row="1" Grid.Column="1" Stroke="#FFC7CDD2" StrokeThickness="2" X1="70" Y1="360" X2="330" Y2="360"/>
-        <DatePicker HorizontalAlignment="Left" FontFamily="Calibri" FontSize="22"
-                    BorderThickness="0" x:Name="DateOfBirth"
-                    Margin="50,234,0,0" Grid.Row="1" VerticalAlignment="Top" Width="260"/>
+
         <Button Grid.Row="1" Content="Назад" HorizontalAlignment="Center" 
             BorderThickness="2" Margin="0,372,0,0" Width="260" Height="40" 
             VerticalAlignment="Top" Background="#FF2E3844"
             Foreground="#FF455468" BorderBrush="#FF455468" Grid.Column="1" Click="Cancel_Button_Click"/>
+
+        <TextBox Grid.Row="1" Style="{DynamicResource TextB}" x:Name="CholesterolTextBox"
+            VerticalAlignment="Top" BorderBrush="Black" 
+            Margin="50,357,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
+        <TextBlock Grid.Row="1" Grid.Column="0"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,357,90,53"
+            FontSize="14" Text="Введите уровень холлестерина" Foreground="#FF464545">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=CholesterolTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Label Grid.Row="1" Grid.Column="1" Content="Выберите степень тяжести" HorizontalAlignment="Left" 
+            Margin="32,175,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="24" 
+            Height="40" Width="260" Foreground="#FFC7CDD2"/>
 
 
 
