@@ -19,7 +19,7 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<User> FindByCredits(string login, string hash)
         {
-            var user = await set.SingleAsync(user => user.Login == login && user.Hash == hash);
+            var user = await set.SingleAsync(user => EF.Functions.Collate(user.Login, "SQL_Latin1_General_CP1_CS_AS") == login && user.Hash == hash);
             
             return user;
         }
