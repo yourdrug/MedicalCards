@@ -61,9 +61,19 @@ namespace MedicalCards.BLL.Services
             return (Array)await medicinesRepository.GetAll();
         }
 
-        public async Task<List<Appointment>> GetAllAppointments()
+        public async Task<List<Appointment?>?> GetAllAppointments()
         {
             return await appointmentRepository.GetAllWithAllDependencies();
+        }
+
+        public async Task<List<Appointment?>?> GetAppointmentsByDoctor(int id)
+        {
+            return await appointmentRepository.GetAppointmentsByDoctor(id);
+        }
+
+        public async Task<List<Appointment?>?> GetAppointmentsByPatient(int id)
+        {
+            return await appointmentRepository.GetAppointmentsByPatient(id);
         }
 
         public void Dispose()

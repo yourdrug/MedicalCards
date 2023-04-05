@@ -65,7 +65,7 @@ namespace WindowsInterfaces
                    );
 
 
-            var appointment_list = await POMS.GetAllAppointments();
+            var appointment_list = await POMS.GetAppointmentsByDoctor(temp_doctor.DoctorId);
             AppointmentGrid.ItemsSource = appointment_list;
             DiagnosisGrid.Visibility = Visibility.Hidden;
             AppointmentGrid.Visibility = Visibility.Visible;

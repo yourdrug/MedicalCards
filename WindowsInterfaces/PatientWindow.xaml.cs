@@ -37,7 +37,7 @@ namespace WindowsInterfaces
             var reserches_list = temp_patient.Research;
             ResearchGrid.ItemsSource = reserches_list;
 
-
+            AppointmentGrid.Visibility = Visibility.Hidden;
             AllergiesGrid.Visibility = Visibility.Hidden;
             ResearchGrid.Visibility = Visibility.Visible;
 
@@ -96,6 +96,7 @@ namespace WindowsInterfaces
             Comment.Text = diagnosis.Comment.ToString();
             Date.Text = diagnosis.DateOfDiagnosis.ToShortDateString();
 
+            AppointmentGrid.Visibility = Visibility.Hidden;
             AllergiesGrid.Visibility = Visibility.Hidden;
             ResearchGrid.Visibility = Visibility.Hidden;
 
@@ -121,7 +122,7 @@ namespace WindowsInterfaces
             var allergy_list = temp_patient.Allergy;
             AllergiesGrid.ItemsSource = allergy_list;
 
-
+            AppointmentGrid.Visibility = Visibility.Hidden;
             ResearchGrid.Visibility = Visibility.Hidden;
             AllergiesGrid.Visibility = Visibility.Visible;
 
@@ -169,7 +170,7 @@ namespace WindowsInterfaces
             DownPressure.Text = feature.DownPressure.ToString();
             Chorosterol.Text = feature.Сholesterol.ToString();
 
-
+            AppointmentGrid.Visibility = Visibility.Hidden;
             ResearchGrid.Visibility = Visibility.Hidden;
             AllergiesGrid.Visibility = Visibility.Hidden;
 
@@ -199,10 +200,52 @@ namespace WindowsInterfaces
             Date.Visibility = Visibility.Hidden;
         }
 
-        private void Appointment_Button_Click(object sender, RoutedEventArgs e)
+        private async void Appointment_Button_Click(object sender, RoutedEventArgs e)
         {
+            using var POMS = new PrescriptionOfMedicinesService(
+                   new PrescriptionOfMedicinesRepository(
+                       new MedicalCards.DAL.AppContext()
+                       ),
+                   new AppointmentRepository(
+                       new MedicalCards.DAL.AppContext()
+                       ),
+                   new MedicinesRepository(
+                       new MedicalCards.DAL.AppContext()
+                       )
+                   );
 
 
+            AppointmentGrid.Visibility = Visibility.Visible;
+            var appointments = await POMS.GetAppointmentsByPatient(temp_patient.PatientId);
+            AppointmentGrid.ItemsSource = appointments;
+
+            ResearchGrid.Visibility = Visibility.Hidden;
+            AllergiesGrid.Visibility = Visibility.Hidden;
+
+            DescHeight.Visibility = Visibility.Hidden;
+            DescWeight.Visibility = Visibility.Hidden;
+            DescPulse.Visibility = Visibility.Hidden;
+            DescBMI.Visibility = Visibility.Hidden;
+            DescUpPressure.Visibility = Visibility.Hidden;
+            DescDownPressure.Visibility = Visibility.Hidden;
+            DescChorosterol.Visibility = Visibility.Hidden;
+
+            Height.Visibility = Visibility.Hidden;
+            Weight.Visibility = Visibility.Hidden;
+            Pulse.Visibility = Visibility.Hidden;
+            BMI.Visibility = Visibility.Hidden;
+            UpPressure.Visibility = Visibility.Hidden;
+            DownPressure.Visibility = Visibility.Hidden;
+            Chorosterol.Visibility = Visibility.Hidden;
+
+            DescName.Visibility = Visibility.Hidden;
+            DescFIO.Visibility = Visibility.Hidden;
+            DescComment.Visibility = Visibility.Hidden;
+            DescDate.Visibility = Visibility.Hidden;
+            Name.Visibility = Visibility.Hidden;
+            FIO.Visibility = Visibility.Hidden;
+            Comment.Visibility = Visibility.Hidden;
+            Date.Visibility = Visibility.Hidden;
 
         }
 

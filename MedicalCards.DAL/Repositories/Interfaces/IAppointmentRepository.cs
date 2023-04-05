@@ -13,5 +13,9 @@ namespace MedicalCards.DAL.Repositories.Interfaces
 
         public Task<List<Appointment?>?> GetAllWithAllDependencies();
 
+        public Task<List<Appointment?>?> GetAppointmentsByDoctor(int id);
+
+        public Task<List<Appointment?>?> GetAppointmentsByPatient(int id);
+
     }
 }

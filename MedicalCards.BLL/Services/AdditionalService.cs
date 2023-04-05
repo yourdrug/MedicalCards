@@ -35,6 +35,9 @@ namespace MedicalCards.BLL.Services
         {
             featuresRepository.Dispose();
             allergyRepository.Dispose();
-    }
-}
+    
         }
+
+    }
+        
+}

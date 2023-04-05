@@ -62,7 +62,7 @@ namespace WindowsInterfaces
             features.UpPressure = Convert.ToInt32(UpPressureTextBox.Text);
             features.DownPressure = Convert.ToInt32(DownPressureTextBox.Text);
 
-            features.BMI = features.Weight = (float)double.Parse(BMITextBox.Text.ToString(), formatter);
+            features.BMI = (float)double.Parse(BMITextBox.Text.ToString(), formatter);
 
             features.Сholesterol = Convert.ToInt32(CholesterolTextBox.Text);
             features.PatientId = temp_patient.PatientId;

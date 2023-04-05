@@ -25,7 +25,26 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<List<Appointment?>?> GetAllWithAllDependencies()
         {
-            return await set.Include(a => a.Doctor).Include(a => a.Patient).Include(a => a.PrescriptionOfMedicines).ToListAsync();
+            List<Appointment?> appointments = await set.Include(a => a.Doctor).Include(a => a.Patient).Include(a => a.PrescriptionOfMedicines).ToListAsync();
+            return appointments;
+        }
+
+        public async Task<List<Appointment?>?> GetAppointmentsByDoctor(int id)
+        {
+            List<Appointment?> appointments = await set.Where(d=>d.DoctorId == id)
+                                                        .Include(a => a.Doctor)
+                                                        .Include(a => a.Patient)
+                                                        .Include(a => a.PrescriptionOfMedicines).ToListAsync();
+            return appointments;
+        }
+
+        public async Task<List<Appointment?>?> GetAppointmentsByPatient(int id)
+        {
+            List<Appointment?> appointments = await set.Where(d => d.PatientId == id)
+                                                        .Include(a => a.Doctor)
+                                                        .Include(a => a.Patient)
+                                                        .Include(a => a.PrescriptionOfMedicines).ToListAsync();
+            return appointments;
         }
     }
 }

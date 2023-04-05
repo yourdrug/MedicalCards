@@ -245,11 +245,10 @@
                   x:Name="AppointmentGrid" AutoGenerateColumns="False" 
                   Visibility="Hidden" IsReadOnly="True" MouseDoubleClick="AppointmentGrid_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding ResearchId}" />
-                <DataGridTextColumn Header="Фамилия пациента"  Width="150" Binding="{Binding Patient.LastName}"/>
-                <DataGridTextColumn Header="Фамилия доктора"  Width="130" Binding="{Binding Doctor.LastName}"/>
-                <DataGridTextColumn Header="Дата и время начала"  Width="*" Binding="{Binding StartAppointment}"/>
-                <DataGridTextColumn Header="Дата и время конца"  Width="*" Binding="{Binding FinishAppointment}"/>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding AppointmentId}" />
+                <DataGridTextColumn Header="Фамилия пациента"  Width="170" Binding="{Binding Patient.LastName}"/>
+                <DataGridTextColumn Header="Фамилия доктора"  Width="170" Binding="{Binding Doctor.LastName}"/>
+                <DataGridTextColumn Header="Дата и время начала"  Width="200" Binding="{Binding DateTimeAppointment}"/>
                 <DataGridTextColumn Header="Стоимость"  Width="*" Binding="{Binding Price}"/>
             </DataGrid.Columns>
         </DataGrid>
