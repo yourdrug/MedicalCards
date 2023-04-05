@@ -38,8 +38,8 @@ namespace KURS
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.LoginTextBox.Text = "";
-            this.PasswordTextBox.Clear();
+            LoginTextBox.Text = "";
+            PasswordTextBox.Clear();
             this.Hide();
             RegistrationWindow regWindow = new RegistrationWindow();
             regWindow.Owner = this;
@@ -61,64 +61,62 @@ namespace KURS
 
         private async void SignIn_Click(object sender, RoutedEventArgs e)
         {
+            using var userService = new UserService(
+                   new UserRepository(
+                       new MedicalCards.DAL.AppContext()
+                       ),
+                   new PatientRepository(
+                       new MedicalCards.DAL.AppContext()
+                       ),
+                   new DoctorRepository(
+                       new MedicalCards.DAL.AppContext()
+                       )
+                   );
+
+            User user = await userService.Authentificate(LoginTextBox.Text, PasswordTextBox.Password);
+
+            if (user.Access == User.AccessType.Active)
             {
-                using var userService = new UserService(
-                    new UserRepository(
-                        new MedicalCards.DAL.AppContext()
-                        ),
-                    new PatientRepository(
-                        new MedicalCards.DAL.AppContext()
-                        ),
-                    new DoctorRepository(
-                        new MedicalCards.DAL.AppContext()
-                        )
-                    );
-                
-                User user = await userService.Authentificate(LoginTextBox.Text, PasswordTextBox.Password);
 
-                if(user.Access == User.AccessType.Active)
+                switch (user.Role)
                 {
+                    case User.RoleType.Patient:
+                        {
+                            Patient patient = await userService.GetPatientByUser(user);
+                            this.Hide();
+                            PatientWindow patientWindow = new PatientWindow(patient);
+                            patientWindow.Show();
+                            break;
+                        }
 
-                    switch (user.Role)
-                    {
-                        case User.RoleType.Patient:
-                            {
-                                Patient patient = await userService.GetPatientByUser(user);
-                                this.Hide();
-                                PatientWindow patientWindow = new PatientWindow(patient);
-                                patientWindow.Owner = this;
-                                patientWindow.Show();
-                                break;
-                            }
+                    case User.RoleType.Doctor:
+                        {
+                            Doctor doctor = await userService.GetDoctorByUser(user);
+                            this.Hide();
+                            DoctorWindow doctorWindow = new DoctorWindow(doctor);
+                            doctorWindow.Show();
+                            break;
+                        }
 
-                        case User.RoleType.Doctor:
-                            {
-                                Doctor doctor = await userService.GetDoctorByUser(user);
-                                this.Hide();
-                                DoctorWindow doctorWindow = new DoctorWindow(doctor);
-                                doctorWindow.Owner = this;
-                                doctorWindow.Show();
-                                break;
-                            }
-
-                        case User.RoleType.Admin:
-                            {
-                                this.Hide();
-                                AdminWindow adminWindow = new AdminWindow();
-                                adminWindow.Owner = this;
-                                adminWindow.Show();
-                                break;
-                            }
-                    }
+                    case User.RoleType.Admin:
+                        {
+                            AdminWindow adminWindow = new AdminWindow();
+                            this.Hide();
+                            adminWindow.Show();
+                            break;
+                        }
                 }
-
-                else
-                {
-                    MessageBox.Show("Ваша учетная запись заблокирована или находится на рассмотрении!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-               
-                
             }
+
+            else
+            {
+                MessageBox.Show("Ваша учетная запись заблокирована или находится на рассмотрении!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+            LoginTextBox.Text = "";
+            PasswordTextBox.Clear();
+
         }
+
     }
 }

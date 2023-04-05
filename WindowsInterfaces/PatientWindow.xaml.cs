@@ -1,4 +1,5 @@
-﻿using MedicalCards.BLL.Services;
+﻿using AuthWindow;
+using MedicalCards.BLL.Services;
 using MedicalCards.DAL.Entities;
 using MedicalCards.DAL.Repositories;
 using System;
@@ -213,6 +214,12 @@ namespace WindowsInterfaces
         private void ResearchGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             int id = ResearchGrid.SelectedIndex;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.MainWindow.Show();
+            this.Close();
         }
     }
 }

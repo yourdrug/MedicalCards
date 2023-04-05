@@ -94,7 +94,8 @@ namespace WindowsInterfaces
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            App.Current.MainWindow.Show();
+            this.Close();
         }
     }
 
