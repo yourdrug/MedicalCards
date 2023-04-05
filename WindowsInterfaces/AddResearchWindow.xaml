@@ -1,0 +1,236 @@
+﻿<Window x:Class="WindowsInterfaces.AddResearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WindowsInterfaces"
+        mc:Ignorable="d"
+        Title="AddResearchWindow" Height="650" Width="800" 
+        Background="#FF2E3844" WindowStyle="None" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="TextB" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <SolidColorBrush x:Key="TextBox.Static.Border1" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border1" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border1" Color="#FF569DE5"/>
+        <Style x:Key="FocusVisual1">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background1" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border1" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background1" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border1" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background1" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border1" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="550"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="330"/>
+            <ColumnDefinition Width="470"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="ResearchNameTextBox"
+                 VerticalAlignment="Top" BorderBrush="Black" 
+                 Margin="50,64,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
+        <TextBlock Grid.Row="1" Grid.Column="0"
+                   IsHitTestVisible="False" Padding="13,10" Margin="50,64,23,446"
+                   FontSize="14" Text="Введите название исследования" Foreground="#FF464545">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ResearchNameTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+
+        <TextBlock Grid.Row="1" Grid.Column="0"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,13,20,499"
+            FontSize="14" Background="White"  x:Name="PatientTextBlock"
+            Text="Выберите пациента" Foreground="#FF464545">
+        </TextBlock>
+
+        <DataGrid Grid.Row="1" Grid.Column="1" Margin="10,10,10,185"
+                  x:Name="PatientsGrid" AutoGenerateColumns="False" 
+                  Visibility="Visible" IsReadOnly="True" MouseDoubleClick="PatientsGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding PatientId}" />
+                <DataGridTextColumn Header="Фамилия"  Width="*" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Имя"  Width="130" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Отчество"  Width="150" Binding="{Binding Patronymic}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
+               Margin="0,10,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
+               Height="40" Width="149" Foreground="#FFC7CDD2"/>
+
+        <Button Content="Завершить" HorizontalAlignment="Center" 
+                BorderThickness="0" Margin="0,462,0,0" Width="260" Height="40" 
+                VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+                Foreground="#FF8A99A8" Click="Finish_Button_Click" Grid.Column="1"/>
+
+        <DatePicker HorizontalAlignment="Left" FontFamily="Calibri" FontSize="22"
+                    BorderThickness="0" x:Name="DateOfResearch"
+                    Margin="50,419,0,0" Grid.Row="1" VerticalAlignment="Top" Width="260" Height="33" RenderTransformOrigin="0.501,0.192"/>
+
+        <Button Grid.Row="1" Content="Назад" HorizontalAlignment="Left" 
+            BorderThickness="2" Margin="253,382,0,0" Width="207" Height="40" 
+            VerticalAlignment="Top" Background="#FF2E3844"
+            Foreground="#FF455468" BorderBrush="#FF455468" Grid.Column="1" Click="Cancel_Button_Click"/>
+
+        <Button Grid.Row="1" Content="Показать" HorizontalAlignment="Left" 
+            BorderThickness="2" Margin="10,382,0,0" Width="211" Height="40" 
+            VerticalAlignment="Top" Background="#FF2E3844"
+            Foreground="#FF455468" BorderBrush="#FF455468" Grid.Column="1" Click="Show_Button_Click"/>
+        
+        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="ShortResultTextBox"
+            VerticalAlignment="Top" BorderBrush="Black" 
+            Margin="50,119,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
+        <TextBlock Grid.Row="1" Grid.Column="0"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,119,23,391"
+            FontSize="14" Text="Введите короткий результат" Foreground="#FF464545">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ShortResultTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="ResultTextBox"
+            VerticalAlignment="Top" BorderBrush="Black"
+            Margin="50,172,0,0" Height="160" HorizontalAlignment="Left" Width="260"/>
+        <TextBlock Grid.Row="1" Grid.Column="0"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,172,23,218"
+            FontSize="14" Text="Введите результат" Foreground="#FF464545">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ResultTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextB}" x:Name="CommentTextBox"
+            VerticalAlignment="Top" BorderBrush="Black" 
+            Margin="50,472,0,0" Height="40" HorizontalAlignment="Left" Width="260"/>
+        <TextBlock Grid.Row="1" Grid.Column="0"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,472,23,38"
+            FontSize="14" Text="Введите комментарий" Foreground="#FF464545">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=CommentTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+
+        <ComboBox x:Name="TypeComboBox" HorizontalAlignment="Left" Margin="52,359,0,0" Grid.Row="1"
+                  FontSize="14" FontFamily="Calibri" BorderBrush="Black" BorderThickness="2"
+                  VerticalAlignment="Top" Width="256" Height="40" Padding="13, 10"
+                  ItemsSource="{Binding typeResearch}"/>
+
+
+    </Grid>
+</Window>

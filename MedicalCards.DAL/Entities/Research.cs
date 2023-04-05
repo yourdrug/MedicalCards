@@ -35,5 +35,7 @@ namespace MedicalCards.DAL.Entities
         public DateTime DateOfResearch { get; set; }
 
 
+        public Patient? Patient { get; set; }
+
     }
 }

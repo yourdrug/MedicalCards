@@ -18,18 +18,22 @@ namespace MedicalCards.BLL.Services
             this.researchRepository = researchRepository;
         }
 
-        public async Task<Array> GetResearches(Patient patient)
+        public async Task<List<Research>> GetPatientResearches(int id)
         {
-            var temp = await researchRepository.GetAllByPredicate(research => research.PatientId == patient.PatientId);
-            return temp.ToArray();
-            //return (Array)await researchRepository.GetAll();
+            var researches = await researchRepository.GetResearchesByPatient(id);
+            return researches;
         }
 
-        public async Task<Research> CreateNewResearch(Research research)
+        public async Task<List<Research>> GetAllResearches()
+        {
+            var researches = await researchRepository.GetAllResearches();
+            return researches;
+        }
+
+        public async void CreateNewResearch(Research research)
         {
             var temp = await researchRepository.Create(research);
-            return temp;
-            //return (Array)await researchRepository.GetAll();
+            researchRepository.Save();
         }
 
         public void Dispose()

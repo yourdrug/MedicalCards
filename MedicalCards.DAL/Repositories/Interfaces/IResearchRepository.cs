@@ -9,6 +9,10 @@ namespace MedicalCards.DAL.Repositories.Interfaces
 {
     public interface IResearchRepository:IRepository<Research>
     {
+        public Task<List<Research>> GetAllResearches();
 
+        public Task<List<Research>> GetResearchesByPatient(int id);
     }
+
+    
 }

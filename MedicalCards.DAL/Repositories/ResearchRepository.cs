@@ -15,5 +15,20 @@ namespace MedicalCards.DAL.Repositories
         {
             
         }
+
+        
+        public async Task<List<Research>> GetAllResearches()
+        {
+            var researches = await set.Include(r => r.Patient).ToListAsync();
+            return researches;
+        }
+
+        public async Task<List<Research>> GetResearchesByPatient(int id)
+        {
+            var researches = await set.Include(r => r.Patient).Where(r => r.PatientId == id).ToListAsync();
+            return researches;
+
+        }
+
     }
 }

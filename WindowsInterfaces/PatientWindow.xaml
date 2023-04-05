@@ -139,15 +139,26 @@
 
         <DataGrid Grid.Row="1" Margin="337,60,153,311"
                   x:Name="ResearchGrid" AutoGenerateColumns="False" 
-                  Visibility="Hidden" IsReadOnly="True" MouseDoubleClick="ResearchGrid_MouseDoubleClick">
+                  Visibility="Visible" IsReadOnly="True" MouseDoubleClick="ResearchGrid_MouseDoubleClick">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Height" Value="100"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="40" Binding="{Binding ResearchId}" />
                 <DataGridTextColumn Header="Название"  Width="150" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Тип"  Width="130" Binding="{Binding TypeOfResearch}"/>
                 <DataGridTextColumn Header="Короткий результат"  Width="*" Binding="{Binding ShortResult}"/>
-                <DataGridTextColumn Header="Результат"  Width="*" Binding="{Binding Result}"/>
+                <DataGridTextColumn Header="Результат"  Width="*" Binding="{Binding Result}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Комментарий"  Width="*" Binding="{Binding Comment}"/>
-                <DataGridTextColumn Header="Дата проведения"  Width="120" Binding="{Binding DateOfResearch}"/>
+                <DataGridTextColumn Header="Дата проведения"  Width="140" Binding="{Binding DateOfResearch}"/>
             </DataGrid.Columns>
         </DataGrid>
 

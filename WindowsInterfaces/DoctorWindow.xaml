@@ -118,7 +118,7 @@
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
             Foreground="#FF8A99A8" Margin="60,60,0,0" Click="Appointment_Button_Click" />
 
-        <Button Content="Поставленные диагнозы" HorizontalAlignment="Left" 
+        <Button Content="Диагнозы" HorizontalAlignment="Left" 
             BorderThickness="0" Width="224" Height="60" 
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
             Foreground="#FF8A99A8" Margin="60,164,0,0" Click="Diagnosis_Button_Click" />
@@ -147,11 +147,30 @@
                 <DataGridTextColumn Header="Стоимость"  Width="*" Binding="{Binding Price}"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
+        <DataGrid Grid.Row="1" Margin="337,60,111,311"
+                  x:Name="ResearchGrid" AutoGenerateColumns="False" 
+                  Visibility="Hidden" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding ResearchId}" />
+                <DataGridTextColumn Header="Название"  Width="150" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Тип"  Width="130" Binding="{Binding TypeOfResearch}"/>
+                <DataGridTextColumn Header="Короткий результат"  Width="*" Binding="{Binding ShortResult}"/>
+                <DataGridTextColumn Header="Результат"  Width="*" Binding="{Binding Result}"/>
+                <DataGridTextColumn Header="Комментарий"  Width="*" Binding="{Binding Comment}"/>
+                <DataGridTextColumn Header="Дата проведения"  Width="120" Binding="{Binding DateOfResearch}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
         <Button Content="Добавить" HorizontalAlignment="Left" 
             BorderThickness="0" Width="190" Height="39" 
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
             Foreground="#FF8A99A8" Margin="337,477,0,0" Click="Add_Button_Click" />
+        
+        <Button Content="Исследования" HorizontalAlignment="Left" x:Name="Research"
+            BorderThickness="0" Width="224" Height="60" 
+            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+            Foreground="#FF8A99A8" Margin="60,270,0,0" Click="Research_Click" />
 
 
     </Grid>

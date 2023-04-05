@@ -46,6 +46,7 @@ namespace WindowsInterfaces
                 var diagnosis_list = await  diagnosisService.GetDiagnosisByDoctor(temp_doctor.DoctorId);
                 DiagnosisGrid.ItemsSource = (System.Collections.IEnumerable)diagnosis_list;
                 AppointmentGrid.Visibility = Visibility.Hidden;
+                ResearchGrid.Visibility = Visibility.Hidden;
                 DiagnosisGrid.Visibility = Visibility.Visible;
             }
         }
@@ -68,6 +69,7 @@ namespace WindowsInterfaces
             var appointment_list = await POMS.GetAppointmentsByDoctor(temp_doctor.DoctorId);
             AppointmentGrid.ItemsSource = appointment_list;
             DiagnosisGrid.Visibility = Visibility.Hidden;
+            ResearchGrid.Visibility = Visibility.Hidden;
             AppointmentGrid.Visibility = Visibility.Visible;
         }
 
@@ -89,13 +91,37 @@ namespace WindowsInterfaces
                 addDiagnosisWindow.Owner = this;
                 this.Hide();
            }
-           
+
+            else if (ResearchGrid.Visibility == Visibility.Visible)
+            {
+                AddResearchWindow addResearchWindow = new AddResearchWindow(temp_doctor);
+                addResearchWindow.Show();
+                addResearchWindow.Owner = this;
+                this.Hide();
+            }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             App.Current.MainWindow.Show();
             this.Close();
+        }
+
+        private async void Research_Click(object sender, RoutedEventArgs e)
+        {
+            using var researchService = new ResearchService(
+                   new ResearchRepository(
+                       new MedicalCards.DAL.AppContext()
+                       )
+                   );
+
+            DiagnosisGrid.Visibility = Visibility.Hidden;
+            ResearchGrid.Visibility = Visibility.Visible;
+            AppointmentGrid.Visibility = Visibility.Hidden;
+
+            var researches = await researchService.GetAllResearches();
+            ResearchGrid.ItemsSource = researches;
         }
     }
 

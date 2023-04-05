@@ -32,9 +32,15 @@ namespace WindowsInterfaces
             FullName.Text = new string(patient.LastName + " " + patient.FirstName);
         }
 
-        private void Researches_Button_Click(object sender, RoutedEventArgs e)
+        private async void Researches_Button_Click(object sender, RoutedEventArgs e)
         {
-            var reserches_list = temp_patient.Research;
+            using var researchService = new ResearchService(
+                   new ResearchRepository(
+                       new MedicalCards.DAL.AppContext()
+                       )
+                   );
+
+            var reserches_list = await researchService.GetPatientResearches(temp_patient.PatientId);
             ResearchGrid.ItemsSource = reserches_list;
 
             AppointmentGrid.Visibility = Visibility.Hidden;
