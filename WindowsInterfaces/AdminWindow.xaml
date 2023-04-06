@@ -105,13 +105,11 @@
             <RowDefinition Height="120"/>
             <RowDefinition Height="750"/>
         </Grid.RowDefinitions>
-        <TextBlock Foreground="White" x:Name="FullName"
-                   Grid.Row="0" Margin="967,10,170,60" TextAlignment="Right" Padding="12" 
-                   FontFamily="Calibri" FontSize="20"/>
+        
         <Button Content="Выйти" HorizontalAlignment="Left" 
                 BorderThickness="0" Width="145" Height="34" 
                 VerticalAlignment="Top" Background="#FF435971" Grid.Row="0"
-                Foreground="#FF8A99A8" Margin="1245,18,0,0" />
+                Foreground="#FF8A99A8" Margin="1245,18,0,0" Click="Button_Click" />
 
         <Button Content="Пользователи" HorizontalAlignment="Left" 
             BorderThickness="0" Width="224" Height="60" 

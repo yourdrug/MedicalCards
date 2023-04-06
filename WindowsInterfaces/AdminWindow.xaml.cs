@@ -1,4 +1,5 @@
-﻿using MedicalCards.BLL.Services;
+﻿using AuthWindow;
+using MedicalCards.BLL.Services;
 using MedicalCards.DAL.Entities;
 using MedicalCards.DAL.Repositories;
 using System;
@@ -163,6 +164,13 @@ namespace WindowsInterfaces
         {
             isEditable = true;
             UsersGrid.IsReadOnly = false;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();     
+            AuthWindow authWindow = new AuthWindow();
+            authWindow.Show();
         }
     }
 }

@@ -19,7 +19,7 @@ using MedicalCards.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using WindowsInterfaces;
 
-namespace KURS
+namespace WindowsInterfaces
 {
     /// <summary>
     /// Логика взаимодействия для AuthWindow.xaml
