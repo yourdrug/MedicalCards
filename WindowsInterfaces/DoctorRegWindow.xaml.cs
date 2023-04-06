@@ -86,8 +86,9 @@ namespace WindowsInterfaces
 
 
                 this.Close();
-                DoctorWindow patientWindow = new DoctorWindow(doctor);
-                patientWindow.Show();
+
+                AddQualificationWindow newWin = new AddQualificationWindow(doctor);
+                newWin.Show();
 
             }
         }

@@ -118,7 +118,9 @@ namespace AuthWindow
 
                         case User.RoleType.Admin:
                             {
-                               
+                                AdminWindow adminWindow = new AdminWindow();
+                                adminWindow.Show();
+                                this.Close();
                                 break;
                             }
                     }

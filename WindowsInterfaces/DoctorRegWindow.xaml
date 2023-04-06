@@ -271,7 +271,7 @@
                Margin="0,15,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="24" 
                Height="40" Width="260" Foreground="#FFC7CDD2"/>
 
-        <Button Content="Завершить" HorizontalAlignment="Center" 
+        <Button Content="Далее" HorizontalAlignment="Center" 
                 BorderThickness="0" Margin="0,303,0,0" Width="260" Height="40" 
                 VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
                 Foreground="#FF8A99A8" Grid.Column="1" Click="Finish_Button_Click"/>
@@ -280,6 +280,7 @@
         <DatePicker HorizontalAlignment="Left" FontFamily="Calibri" FontSize="22"
                     BorderThickness="0" x:Name="DateOfBirth"
                     Margin="74,290,0,0" Grid.Row="1" VerticalAlignment="Top" Width="260"/>
+        
         <Button Grid.Row="1" Content="Назад" HorizontalAlignment="Center" 
             BorderThickness="2" Margin="0,372,0,0" Width="260" Height="40" 
             VerticalAlignment="Top" Background="#FF2E3844"
