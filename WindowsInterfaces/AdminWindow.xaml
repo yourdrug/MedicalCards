@@ -119,20 +119,35 @@
             Foreground="#FF8A99A8" Margin="60,60,0,0" Click="Users_Button_Click" />
 
         <DataGrid Grid.Row="1" Margin="337,60,153,311"
-                  x:Name="UsersGrid" AutoGenerateColumns="False" 
+                  x:Name="UsersGrid" AutoGenerateColumns="False"
                   Visibility="Hidden" IsReadOnly="True" MouseDoubleClick="UsersGrid_Double_Click">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="40" Binding="{Binding UserId}" />
                 <DataGridTextColumn Header="Логин"  Width="150" Binding="{Binding Login}"/>
                 <DataGridTextColumn Header="Роль"  Width="130" Binding="{Binding Role}"/>
-                <DataGridTextColumn Header="Доступ"  Width="*" Binding="{Binding Access}"/>
+                <DataGridTemplateColumn Header="Доступ" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding DataContext.AccessList, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                      SelectedItem="{Binding Access}" IsReadOnly="False"
+                                      DisplayMemberPath="." SelectionChanged="ComboBox_SelectionChanged"
+                                      SelectedValuePath="." x:Name="AccessComboBox">
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <Button Content="Удалить" HorizontalAlignment="Left" 
             BorderThickness="0" Width="177" Height="41" 
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
             Foreground="#FF8A99A8" Margin="700,461,0,0" Click="Delete_Button_Click" />
+        
+        <Button Content="Редактировать" HorizontalAlignment="Left" 
+            BorderThickness="0" Width="176" Height="41" x:Name="Edit"
+            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+            Foreground="#FF8A99A8" Margin="922,461,0,0" Click="Edit_Click" />
 
     </Grid>
 </Window>

@@ -109,6 +109,12 @@ namespace MedicalCards.BLL.Services
             return (Array)await userRepository.GetAll();
         }
 
+        public async Task<User> UpdateUser(User user)
+        {
+            await userRepository.Update(user);
+            return user;
+        }
+
         public void Dispose()
         {
             userRepository.Dispose();

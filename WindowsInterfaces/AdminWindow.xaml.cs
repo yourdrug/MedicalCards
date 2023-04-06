@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static MedicalCards.DAL.Entities.User;
 
 namespace WindowsInterfaces
 {
@@ -23,11 +24,19 @@ namespace WindowsInterfaces
     /// </summary>
     public partial class AdminWindow : Window
     {
-
+        private bool isEditable = false;
         private int selectedId { get; set; }
+
+        public List<AccessType> AccessList { get; set; } = new List<AccessType> {
+                    AccessType.Blocked,
+                    AccessType.UnderInvestigation,
+                    AccessType.Active
+        };
+
         public AdminWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         private async void Users_Button_Click(object sender, RoutedEventArgs e)
@@ -45,6 +54,8 @@ namespace WindowsInterfaces
                         )
                     );
 
+                isEditable = false;
+                UsersGrid.IsReadOnly = true;
                 var users_list = await userService.GetAllUsers();
                 UsersGrid.Visibility = Visibility.Visible;
                 var users = (System.Collections.IEnumerable)users_list;
@@ -89,6 +100,69 @@ namespace WindowsInterfaces
                    
                 }
             }
+        }
+
+        private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!isEditable)
+            {
+                return;
+            }
+
+            else
+            {
+                // Получение комбобокса, который вызвал событие
+                var comboBox = sender as ComboBox;
+
+                // Получение строки DataGrid, которой принадлежит комбобокс
+                var dataGridRow = FindVisualParent<DataGridRow>(comboBox);
+
+                // Получение объекта данных строки DataGrid
+                var user = dataGridRow.DataContext as User;
+
+                // Получение выбранного значения комбобокса
+                var selectedAccessType = (AccessType)comboBox.SelectedItem;
+                //MessageBox.Show(selectedAccessType.ToString());
+                //MessageBox.Show(user.Login.ToString());
+                // Изменение свойства объекта данных на основе выбранного значения комбобокса;
+
+                using var userService = new UserService(
+                    new UserRepository(
+                        new MedicalCards.DAL.AppContext()
+                        ),
+                    new PatientRepository(
+                        new MedicalCards.DAL.AppContext()
+                        ),
+                    new DoctorRepository(
+                        new MedicalCards.DAL.AppContext()
+                        )
+                    );
+                user.Access = (AccessType)selectedAccessType;
+                var user1 = await userService.UpdateUser(user);
+                MessageBox.Show(user1.Access.ToString());
+                
+            }
+
+        }
+
+        private static T FindVisualParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+
+            if (parentObject == null)
+                return null;
+
+            T parent = parentObject as T;
+            if (parent != null)
+                return parent;
+            else
+                return FindVisualParent<T>(parentObject);
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            isEditable = true;
+            UsersGrid.IsReadOnly = false;
         }
     }
 }

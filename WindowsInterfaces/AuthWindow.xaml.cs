@@ -83,26 +83,26 @@ namespace KURS
                     case User.RoleType.Patient:
                         {
                             Patient patient = await userService.GetPatientByUser(user);
-                            this.Hide();
                             PatientWindow patientWindow = new PatientWindow(patient);
                             patientWindow.Show();
+                            this.Close();
                             break;
                         }
 
                     case User.RoleType.Doctor:
                         {
                             Doctor doctor = await userService.GetDoctorByUser(user);
-                            this.Hide();
                             DoctorWindow doctorWindow = new DoctorWindow(doctor);
                             doctorWindow.Show();
+                            this.Close();
                             break;
                         }
 
                     case User.RoleType.Admin:
                         {
                             AdminWindow adminWindow = new AdminWindow();
-                            this.Hide();
                             adminWindow.Show();
+                            this.Close();
                             break;
                         }
                 }
