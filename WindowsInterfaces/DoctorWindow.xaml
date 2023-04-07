@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
         Title="DoctorWindow" Height="800" Width="1400"
-        Background="#FF2E3844" WindowStyle="None" ResizeMode="NoResize">
+        Background="#FF2E3844" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -162,8 +162,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Добавить" HorizontalAlignment="Left" 
-            BorderThickness="0" Width="190" Height="39" 
+        <Button Content="Добавить" HorizontalAlignment="Left" x:Name="AddButton"
+            BorderThickness="0" Width="190" Height="39" Visibility="Hidden"
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
             Foreground="#FF8A99A8" Margin="337,477,0,0" Click="Add_Button_Click" />
         

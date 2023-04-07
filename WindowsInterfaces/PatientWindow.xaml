@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
         Title="AccountWindow" Height="800" Width="1400"
-        Background="#FF2E3844" WindowStyle="None" ResizeMode="NoResize">
+        Background="#FF2E3844" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -139,7 +139,7 @@
 
         <DataGrid Grid.Row="1" Margin="337,60,153,311"
                   x:Name="ResearchGrid" AutoGenerateColumns="False" 
-                  Visibility="Visible" IsReadOnly="True" MouseDoubleClick="ResearchGrid_MouseDoubleClick">
+                  Visibility="Hidden" IsReadOnly="True" MouseDoubleClick="ResearchGrid_MouseDoubleClick">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Height" Value="100"/>

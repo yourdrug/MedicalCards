@@ -55,14 +55,17 @@ namespace WindowsInterfaces
 
             IFormatProvider formatter = new NumberFormatInfo { NumberDecimalSeparator = "." };
 
-            features.Height = (float)double.Parse(HeightTextBox.Text.ToString(), formatter);
-            features.Weight = (float)double.Parse(WeghtTextBox.Text.ToString(), formatter);
+            features.Height = float.Parse(HeightTextBox.Text.ToString(), formatter);
+            features.Weight = float.Parse(WeghtTextBox.Text.ToString(), formatter);
 
             features.Pulse = Convert.ToInt32(PulseTextBox.Text);
             features.UpPressure = Convert.ToInt32(UpPressureTextBox.Text);
             features.DownPressure = Convert.ToInt32(DownPressureTextBox.Text);
 
-            features.BMI = (float)double.Parse(BMITextBox.Text.ToString(), formatter);
+            IFormatProvider new_formatter = new NumberFormatInfo { NumberDecimalSeparator = "," };
+            features.BMI = float.Parse(BMITextBox.Text.ToString(), new_formatter);
+
+            MessageBox.Show(features.BMI.ToString());
 
             features.Сholesterol = Convert.ToInt32(CholesterolTextBox.Text);
             features.PatientId = temp_patient.PatientId;

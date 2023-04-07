@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AuthWindow"
         mc:Ignorable="d"
         Title="RegistrationWindow" Height="450" Width="360" 
-        Background="#FF2E3844" WindowStyle="None" 
+        Background="#FF2E3844" WindowStyle="SingleBorderWindow" 
         ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">

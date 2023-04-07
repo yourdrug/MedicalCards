@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
-        Title="AddDiagnosisWindow" Height="550" Width="800" 
-        Background="#FF2E3844" WindowStyle="None" ResizeMode="NoResize">
+        Title="AddDiagnosisWindow" Height="570" Width="800" 
+        Background="#FF2E3844" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

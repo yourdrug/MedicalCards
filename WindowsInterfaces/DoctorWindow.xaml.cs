@@ -48,6 +48,8 @@ namespace WindowsInterfaces
                 AppointmentGrid.Visibility = Visibility.Hidden;
                 ResearchGrid.Visibility = Visibility.Hidden;
                 DiagnosisGrid.Visibility = Visibility.Visible;
+
+                AddButton.Visibility = Visibility.Visible;
             }
         }
 
@@ -71,6 +73,8 @@ namespace WindowsInterfaces
             DiagnosisGrid.Visibility = Visibility.Hidden;
             ResearchGrid.Visibility = Visibility.Hidden;
             AppointmentGrid.Visibility = Visibility.Visible;
+
+            AddButton.Visibility = Visibility.Visible;
         }
 
         private void Add_Button_Click(object sender, RoutedEventArgs e)
@@ -120,6 +124,8 @@ namespace WindowsInterfaces
             DiagnosisGrid.Visibility = Visibility.Hidden;
             ResearchGrid.Visibility = Visibility.Visible;
             AppointmentGrid.Visibility = Visibility.Hidden;
+
+            AddButton.Visibility = Visibility.Visible;
 
             var researches = await researchService.GetAllResearches();
             ResearchGrid.ItemsSource = researches;

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
         Title="PatientRegWindow" Height="550" Width="800" 
-        Background="#FF2E3844" WindowStyle="None" ResizeMode="NoResize">
+        Background="#FF2E3844" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

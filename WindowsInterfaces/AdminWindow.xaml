@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
         Title="AdminWindow"  Height="800" Width="1400"
-        Background="#FF2E3844" WindowStyle="None" ResizeMode="NoResize">
+        Background="#FF2E3844" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -136,16 +136,16 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button Content="Удалить" HorizontalAlignment="Left" 
-            BorderThickness="0" Width="177" Height="41" 
+        <!--
+        <Button Content="Удалить" HorizontalAlignment="Left" Visibility="Hidden"
+            BorderThickness="0" Width="177" Height="41" x:Name="DeleteButton"
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
-            Foreground="#FF8A99A8" Margin="700,461,0,0" Click="Delete_Button_Click" />
-        
-        <Button Content="Редактировать" HorizontalAlignment="Left" 
-            BorderThickness="0" Width="176" Height="41" x:Name="Edit"
+            Foreground="#FF8A99A8" Margin="337,461,0,0" Click="Delete_Button_Click" />
+        -->
+        <Button Content="Редактировать" HorizontalAlignment="Left" Visibility="Hidden"
+            BorderThickness="0" Width="176" Height="41" x:Name="EditButton"
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
-            Foreground="#FF8A99A8" Margin="922,461,0,0" Click="Edit_Click" />
+            Foreground="#FF8A99A8" Margin="564,461,0,0" Click="Edit_Click" />
 
     </Grid>
 </Window>

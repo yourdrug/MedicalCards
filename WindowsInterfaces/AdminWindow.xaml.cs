@@ -62,6 +62,8 @@ namespace WindowsInterfaces
                 var users = (System.Collections.IEnumerable)users_list;
                 UsersGrid.ItemsSource = users;
 
+                EditButton.Visibility = Visibility.Visible;
+                //DeleteButton.Visibility = Visibility.Visible;
             }
         }
 
@@ -70,6 +72,7 @@ namespace WindowsInterfaces
             selectedId = ((User)UsersGrid.SelectedItem).UserId;
         }
 
+        /*
         private async void Delete_Button_Click(object sender, RoutedEventArgs e)
         {
             {
@@ -102,7 +105,7 @@ namespace WindowsInterfaces
                 }
             }
         }
-
+        */
         private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!isEditable)
