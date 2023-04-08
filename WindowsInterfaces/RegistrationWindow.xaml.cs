@@ -118,8 +118,8 @@ namespace AuthWindow
 
                         case User.RoleType.Admin:
                             {
-                                AdminWindow adminWindow = new AdminWindow();
-                                adminWindow.Show();
+                                MessageBox.Show("Ожидайте одобрения регистрации от Администратора", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                                Owner.Show();
                                 this.Close();
                                 break;
                             }

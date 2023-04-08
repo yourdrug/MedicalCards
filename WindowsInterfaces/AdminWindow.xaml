@@ -147,5 +147,9 @@
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
             Foreground="#FF8A99A8" Margin="564,461,0,0" Click="Edit_Click" />
 
+        <Label Grid.Row="1" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
+               Margin="24,599,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
+               Height="40" Width="149" Foreground="#FFC7CDD2"/>
+
     </Grid>
 </Window>

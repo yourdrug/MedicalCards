@@ -9,6 +9,6 @@ namespace MedicalCards.DAL.Repositories.Interfaces
 {
     public interface IAllergyRepository:IRepository<Allergy>
     {
-
+        public Task<List<Allergy>> GetAllergiesByPatient(int id);
     }
 }

@@ -156,7 +156,13 @@
                 <DataGridTextColumn Header="Название"  Width="150" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Тип"  Width="130" Binding="{Binding TypeOfResearch}"/>
                 <DataGridTextColumn Header="Короткий результат"  Width="*" Binding="{Binding ShortResult}"/>
-                <DataGridTextColumn Header="Результат"  Width="*" Binding="{Binding Result}"/>
+                <DataGridTextColumn Header="Результат"  Width="*" Binding="{Binding Result}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Комментарий"  Width="*" Binding="{Binding Comment}"/>
                 <DataGridTextColumn Header="Дата проведения"  Width="120" Binding="{Binding DateOfResearch}"/>
             </DataGrid.Columns>
@@ -173,5 +179,9 @@
             Foreground="#FF8A99A8" Margin="60,270,0,0" Click="Research_Click" />
 
 
+        <Label Grid.Row="1" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
+               Margin="24,599,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
+               Height="40" Width="149" Foreground="#FFC7CDD2"/>
+        
     </Grid>
 </Window>

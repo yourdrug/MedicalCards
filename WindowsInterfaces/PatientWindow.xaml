@@ -197,7 +197,13 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="40" Binding="{Binding AllergyId}" />
                 <DataGridTextColumn Header="Аллерген"  Width="150" Binding="{Binding Allergen}"/>
-                <DataGridTextColumn Header="Реакция"  Width="*" Binding="{Binding Reaction}"/>
+                <DataGridTextColumn Header="Реакция"  Width="*" Binding="{Binding Reaction}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Степень тяжести"  Width="*" Binding="{Binding Severity}"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -263,8 +269,15 @@
                 <DataGridTextColumn Header="Стоимость"  Width="*" Binding="{Binding Price}"/>
             </DataGrid.Columns>
         </DataGrid>
-       
 
+        <Button Content="Добавить" HorizontalAlignment="Left" x:Name="AddButton"
+            BorderThickness="0" Width="190" Height="39" Visibility="Hidden"
+            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+            Foreground="#FF8A99A8" Margin="337,477,0,0" Click="Add_Button_Click" />
 
+        <Label Grid.Row="1" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
+               Margin="24,599,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
+               Height="40" Width="149" Foreground="#FFC7CDD2"/>
+        
     </Grid>
 </Window>

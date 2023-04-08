@@ -31,6 +31,11 @@ namespace MedicalCards.BLL.Services
             allergyRepository.Save();
         }
 
+        public async Task<List<Allergy>> GetAllergies(int id)
+        {
+            return await allergyRepository.GetAllergiesByPatient(id);
+        }
+
         public void Dispose()
         {
             featuresRepository.Dispose();

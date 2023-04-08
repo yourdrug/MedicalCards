@@ -2,6 +2,7 @@
 using MedicalCards.BLL.Services;
 using MedicalCards.DAL.Entities;
 using MedicalCards.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,7 @@ namespace WindowsInterfaces
 
             var reserches_list = await researchService.GetPatientResearches(temp_patient.PatientId);
             ResearchGrid.ItemsSource = reserches_list;
+            AddButton.Visibility = Visibility.Hidden;
 
             AppointmentGrid.Visibility = Visibility.Hidden;
             AllergiesGrid.Visibility = Visibility.Hidden;
@@ -97,6 +99,8 @@ namespace WindowsInterfaces
             
             var diagnosis = await diagnosisService.GetDiagnosisByPatient(temp_patient.PatientId);
             var doctor = await diagnosisService.GetDoctorByDiagnosis(diagnosis.DoctorId);
+            AddButton.Visibility = Visibility.Hidden;
+
             Name.Text = diagnosis.Name.ToString();
             FIO.Text = doctor.LastName + " " + doctor.FirstName + " " + doctor.Patronymic;
             Comment.Text = diagnosis.Comment.ToString();
@@ -123,10 +127,20 @@ namespace WindowsInterfaces
             Chorosterol.Visibility = Visibility.Hidden;
         }
 
-        private void Allergy_Button_Click(object sender, RoutedEventArgs e)
+        private async void Allergy_Button_Click(object sender, RoutedEventArgs e)
         {
-            var allergy_list = temp_patient.Allergy;
+            using var addService = new AdditionalService(
+                    new FeaturesRepository(
+                        new MedicalCards.DAL.AppContext()
+                        ),
+                    new AllergyRepository(
+                        new MedicalCards.DAL.AppContext()
+                        )
+                    );
+
+            var allergy_list = await addService.GetAllergies(temp_patient.PatientId);
             AllergiesGrid.ItemsSource = allergy_list;
+            AddButton.Visibility = Visibility.Visible;
 
             AppointmentGrid.Visibility = Visibility.Hidden;
             ResearchGrid.Visibility = Visibility.Hidden;
@@ -167,6 +181,8 @@ namespace WindowsInterfaces
                 );
             
             var feature = await featuresService.GetFeaturesByPatient(temp_patient.PatientId);
+
+            AddButton.Visibility = Visibility.Hidden;
 
             Height.Text = feature.Height.ToString();
             Weight.Text = feature.Weight.ToString();
@@ -225,6 +241,8 @@ namespace WindowsInterfaces
             var appointments = await POMS.GetAppointmentsByPatient(temp_patient.PatientId);
             AppointmentGrid.ItemsSource = appointments;
 
+            AddButton.Visibility = Visibility.Hidden;
+
             ResearchGrid.Visibility = Visibility.Hidden;
             AllergiesGrid.Visibility = Visibility.Hidden;
 
@@ -270,6 +288,13 @@ namespace WindowsInterfaces
             this.Hide();
             AuthWindow authWindow = new AuthWindow();
             authWindow.Show();
+        }
+
+        private void Add_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddAllergyWindow addAllergyWindow = new AddAllergyWindow(temp_patient);
+            this.Close();
+            addAllergyWindow.Show();
         }
     }
 }

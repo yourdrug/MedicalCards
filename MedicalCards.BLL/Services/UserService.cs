@@ -80,7 +80,7 @@ namespace MedicalCards.BLL.Services
                     break;
             }
 
-            user.Access = User.AccessType.Active;
+            user.Access = User.AccessType.UnderInvestigation;
 
             User user2 = await userRepository.Create(user);
             userRepository.Save();

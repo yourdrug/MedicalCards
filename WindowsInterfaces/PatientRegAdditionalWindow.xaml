@@ -267,9 +267,9 @@
                   VerticalAlignment="Top" Width="260" Height="40" Padding="13, 10"
                   ItemsSource="{Binding severtyTyping}" Grid.Column="1"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
-               Margin="0,10,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
-               Height="40" Width="149" Foreground="#FFC7CDD2"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
+               Margin="0,447,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
+               Height="40" Width="149" Foreground="#FFC7CDD2" Grid.RowSpan="2"/>
 
         <Label Grid.Row="1" Grid.Column="1" Content="Заполните поля аллергии (опционально)" HorizontalAlignment="Center" 
                Margin="0,15,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="24" 

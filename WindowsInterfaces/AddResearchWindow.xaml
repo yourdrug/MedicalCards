@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
-        Title="AddResearchWindow" Height="670" Width="800" 
+        Title="AddResearchWindow" Height="670" Width="850" 
         Background="#FF2E3844" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
@@ -137,7 +137,7 @@
             Text="Выберите пациента" Foreground="#FF464545">
         </TextBlock>
 
-        <DataGrid Grid.Row="1" Grid.Column="1" Margin="10,10,10,185"
+        <DataGrid Grid.Row="1" Grid.Column="1" Margin="33,10,-13,185"
                   x:Name="PatientsGrid" AutoGenerateColumns="False" 
                   Visibility="Visible" IsReadOnly="True" MouseDoubleClick="PatientsGrid_MouseDoubleClick">
             <DataGrid.Columns>
@@ -162,12 +162,12 @@
                     Margin="50,419,0,0" Grid.Row="1" VerticalAlignment="Top" Width="260" Height="33" RenderTransformOrigin="0.501,0.192"/>
 
         <Button Grid.Row="1" Content="Назад" HorizontalAlignment="Left" 
-            BorderThickness="2" Margin="253,382,0,0" Width="207" Height="40" 
+            BorderThickness="2" Margin="276,382,0,0" Width="207" Height="40" 
             VerticalAlignment="Top" Background="#FF2E3844"
-            Foreground="#FF455468" BorderBrush="#FF455468" Grid.Column="1" Click="Cancel_Button_Click"/>
+            Foreground="#FF455468" BorderBrush="#FF455468" Grid.Column="1" Click="Cancel_Button_Click" RenderTransformOrigin="0.651,0.489"/>
 
         <Button Grid.Row="1" Content="Показать" HorizontalAlignment="Left" 
-            BorderThickness="2" Margin="10,382,0,0" Width="211" Height="40" 
+            BorderThickness="2" Margin="33,382,0,0" Width="211" Height="40" 
             VerticalAlignment="Top" Background="#FF2E3844"
             Foreground="#FF455468" BorderBrush="#FF455468" Grid.Column="1" Click="Show_Button_Click"/>
         

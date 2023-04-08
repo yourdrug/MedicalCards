@@ -1,13 +1,12 @@
-﻿<Window x:Class="AuthWindow.RegistrationWindow"
+﻿<Window x:Class="WindowsInterfaces.AddAllergyWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AuthWindow"
+        xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="470" Width="400" 
-        Background="#FF2E3844" WindowStyle="SingleBorderWindow" 
-        ResizeMode="NoResize">
+        Title="AddAllergyWindow" Height="550" Width="400" 
+        Background="#FF2E3844" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -36,7 +35,8 @@
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Width" Value="250"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="300"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Calibri"/>
@@ -51,58 +51,6 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <MultiTrigger>
-                    <MultiTrigger.Conditions>
-                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                        <Condition Property="IsSelectionActive" Value="false"/>
-                    </MultiTrigger.Conditions>
-                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                </MultiTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="PassB" TargetType="{x:Type PasswordBox}">
-            <Setter Property="PasswordChar" Value="●"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="Foreground" Value="#FF464545"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="TextBlock.Text"  Value="Введите пароль"/>
-            <Setter Property="Width" Value="250"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontFamily" Value="Calibri"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="AllowDrop" Value="true"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <EventSetter Event="PasswordChanged" Handler="PasswordChanged"/>
-            <EventSetter Event="PasswordChanged" Handler="RepeatPasswordChanged"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type PasswordBox}">
                         <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Border>
@@ -154,65 +102,85 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="350"/>
-            <RowDefinition Height="75"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="450"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="1" Style="{DynamicResource TextB}" x:Name="LoginTextBox"
-                 VerticalAlignment="Top" BorderBrush="Black" Margin="55,10,55,0" Height="40"/>
-        <TextBlock Grid.Row="1" 
-                   IsHitTestVisible="False" Padding="6,10" Margin="75,10,75,300"
-                   FontSize="14" Text="Введите логин" Foreground="#FF464545">
+        <TextBlock Grid.Row="1"
+            IsHitTestVisible="False" Padding="13,10" Margin="50,230,90,180"
+            FontSize="14" Text="Введите уровень холестерина" Foreground="#FF464545" >
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=LoginTextBox}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=СholesterolTextBox}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-
-        <PasswordBox Style="{DynamicResource PassB}" 
-                     Margin="55,62,55,238" x:Name="PasswordTextBox"
-                     Background="White" Grid.Row="1"/>
-
-        <TextBlock Grid.Row="1" x:Name="Watermark"
-            IsHitTestVisible="False" Padding="6,10" Margin="75,67,75,243"
-            FontSize="14" Text="Введите пароль" Foreground="#FF464545">
+        <TextBox Grid.Row="1" Style="{DynamicResource TextB}" x:Name="AllergenTextBox"
+            VerticalAlignment="Top" BorderBrush="Black" 
+            Margin="0,55,0,0" Height="40" HorizontalAlignment="Center" Width="260"/>
+        <TextBlock Grid.Row="1"
+            IsHitTestVisible="False" Padding="13,10" Margin="70,55,70,355"
+            FontSize="14" Text="Введите аллерген" Foreground="#FF464545">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=AllergenTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
         </TextBlock>
-
-        <PasswordBox Style="{DynamicResource PassB}" 
-                     Margin="55,116,55,184" x:Name="RepeatPasswordTextBox"
-                     Background="White" Grid.Row="1"/>
-
-        <TextBlock Grid.Row="1" x:Name="RepeatWatermark"
-            IsHitTestVisible="False" Padding="6,10" Margin="75,121,75,189"
-            FontSize="14" Text="Повторите пароль" Foreground="#FF464545">
+        <TextBox Grid.Row="1" Style="{DynamicResource TextB}" x:Name="ReactionTextBox"
+            VerticalAlignment="Top" BorderBrush="Black" 
+            Margin="0,110,0,0" Height="40" HorizontalAlignment="Center" Width="260"/>
+        <TextBlock Grid.Row="1"
+            IsHitTestVisible="False" Padding="13,10" Margin="70,110,70,300"
+            FontSize="14" Text="Введите реакцию" Foreground="#FF464545" >
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ReactionTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
         </TextBlock>
-
-        <Button Content="Далее" HorizontalAlignment="Center" 
-                BorderThickness="0" Margin="0,236,0,0" Width="250" Height="40" 
-                VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
-                Foreground="#FF8A99A8" Click="SignUp_Button_Click"/>
-
-        <Line Grid.Row="1" Stroke="#FFC7CDD2" StrokeThickness="2" X1="67" Y1="290" X2="317" Y2="290"/>
-
-        <Button Grid.Row="1" Content="Отмена" HorizontalAlignment="Center" 
-                BorderThickness="2" Margin="0,300,0,0" Width="250" Height="40" 
-                VerticalAlignment="Top" Click="Cancel_Button_Click" Background="#FF2E3844"
-                Foreground="#FF455468" BorderBrush="#FF455468"/>
-
-        <Label Grid.Row="2" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" VerticalAlignment="Top" 
-               FontFamily="Gabriola" FontSize="22" Height="40" Width="149" Foreground="#FFC7CDD2"  Margin="0,13"/>
-
-        <ComboBox x:Name="ComboBox1" HorizontalAlignment="Center" Margin="0,175,0,0" Grid.Row="1"
+        
+        <ComboBox x:Name="SevertyComboBox" HorizontalAlignment="Center" Margin="0,225,0,0" Grid.Row="1"
                   FontSize="14" FontFamily="Calibri" BorderBrush="Black" BorderThickness="2"
-                  VerticalAlignment="Top" Width="250" Height="40" Padding="13, 10"
-                  ItemsSource="{Binding roleTyping}"/>
+                  VerticalAlignment="Top" Width="260" Height="40" Padding="13, 10"
+                  ItemsSource="{Binding severtyTyping}" Grid.Column="1"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
+               Margin="0,447,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
+               Height="40" Width="149" Foreground="#FFC7CDD2" Grid.RowSpan="2"/>
+
+        <Button Content="Завершить" HorizontalAlignment="Center" 
+                BorderThickness="0" Margin="0,303,0,0" Width="260" Height="40" 
+                VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+                Foreground="#FF8A99A8" Grid.Column="1" Click="Finish_Button_Click"/>
+
+        <Line Grid.Row="1" Grid.Column="1" Stroke="#FFC7CDD2" StrokeThickness="2" X1="70" Y1="360" X2="330" Y2="360"/>
+
+        <Button Grid.Row="1" Content="Назад" HorizontalAlignment="Center" 
+            BorderThickness="2" Margin="0,372,0,0" Width="260" Height="40" 
+            VerticalAlignment="Top" Background="#FF2E3844"
+            Foreground="#FF455468" BorderBrush="#FF455468" Grid.Column="1" Click="Cancel_Button_Click"/>
+        <Label Grid.Row="1" Content="Выберите степень тяжести" HorizontalAlignment="Center" 
+            Margin="0,165,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="24" 
+            Height="40" Width="260" Foreground="#FFC7CDD2"/>
+
+
 
     </Grid>
 </Window>

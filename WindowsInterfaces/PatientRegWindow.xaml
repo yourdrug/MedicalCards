@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsInterfaces"
         mc:Ignorable="d"
-        Title="PatientRegWindow" Height="550" Width="800" 
+        Title="PatientRegWindow" Height="570" Width="800" 
         Background="#FF2E3844" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
@@ -306,9 +306,8 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <Label Grid.Row="2" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
-               Margin="0,10,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
-               Height="40" Width="149" Foreground="#FFC7CDD2"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
+               Height="40" Width="149" Foreground="#FFC7CDD2" Margin="0,440,0,0" Grid.RowSpan="2"/>
 
         <Label Grid.Row="1" Grid.Column="1" Content="Заполните поля адреса" HorizontalAlignment="Center" 
                Margin="0,15,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="24" 
@@ -320,9 +319,11 @@
                 Foreground="#FF8A99A8" Grid.Column="1" Click="Finish_Button_Click"/>
 
         <Line Grid.Row="1" Grid.Column="1" Stroke="#FFC7CDD2" StrokeThickness="2" X1="70" Y1="360" X2="330" Y2="360"/>
+        
         <DatePicker HorizontalAlignment="Left" FontFamily="Calibri" FontSize="22"
                     BorderThickness="0" x:Name="DateOfBirth"
                     Margin="50,234,0,0" Grid.Row="1" VerticalAlignment="Top" Width="260"/>
+        
         <Button Grid.Row="1" Content="Назад" HorizontalAlignment="Center" 
             BorderThickness="2" Margin="0,372,0,0" Width="260" Height="40" 
             VerticalAlignment="Top" Background="#FF2E3844"

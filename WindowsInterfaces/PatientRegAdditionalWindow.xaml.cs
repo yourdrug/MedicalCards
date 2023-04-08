@@ -31,7 +31,7 @@ namespace WindowsInterfaces
 
         public User temp_user { get; set; }
 
-        public PatientRegAdditionalWindow(User user ,Patient patient)
+        public PatientRegAdditionalWindow(User user, Patient patient)
         {
             InitializeComponent();
             temp_patient = patient;
