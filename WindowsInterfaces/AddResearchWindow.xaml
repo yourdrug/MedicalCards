@@ -159,7 +159,7 @@
 
         <DatePicker HorizontalAlignment="Left" FontFamily="Calibri" FontSize="22"
                     BorderThickness="0" x:Name="DateOfResearch"
-                    Margin="50,419,0,0" Grid.Row="1" VerticalAlignment="Top" Width="260" Height="33" RenderTransformOrigin="0.501,0.192"/>
+                    Margin="50,419,0,0" Grid.Row="1" VerticalAlignment="Top" Width="260" Height="33"/>
 
         <Button Grid.Row="1" Content="Назад" HorizontalAlignment="Left" 
             BorderThickness="2" Margin="276,382,0,0" Width="207" Height="40" 

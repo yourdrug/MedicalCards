@@ -41,6 +41,12 @@ namespace WindowsInterfaces
                        )
                    );
 
+            FilterName.Visibility = Visibility.Visible;
+            ApplyButton.Visibility = Visibility.Visible;
+            FirstDate.Visibility = Visibility.Visible;
+            SecondDate.Visibility = Visibility.Visible;
+
+
             var reserches_list = await researchService.GetPatientResearches(temp_patient.PatientId);
             ResearchGrid.ItemsSource = reserches_list;
             AddButton.Visibility = Visibility.Hidden;
@@ -125,6 +131,12 @@ namespace WindowsInterfaces
             UpPressure.Visibility = Visibility.Hidden;
             DownPressure.Visibility = Visibility.Hidden;
             Chorosterol.Visibility = Visibility.Hidden;
+
+
+            FilterName.Visibility = Visibility.Hidden;
+            ApplyButton.Visibility = Visibility.Hidden;
+            FirstDate.Visibility = Visibility.Hidden;
+            SecondDate.Visibility = Visibility.Hidden;
         }
 
         private async void Allergy_Button_Click(object sender, RoutedEventArgs e)
@@ -170,6 +182,11 @@ namespace WindowsInterfaces
             FIO.Visibility = Visibility.Hidden;
             Comment.Visibility = Visibility.Hidden;
             Date.Visibility = Visibility.Hidden;
+
+            FilterName.Visibility = Visibility.Hidden;
+            ApplyButton.Visibility = Visibility.Hidden;
+            FirstDate.Visibility = Visibility.Hidden;
+            SecondDate.Visibility = Visibility.Hidden;
         }
 
         private async void Features_Button_Click(object sender, RoutedEventArgs e)
@@ -220,6 +237,11 @@ namespace WindowsInterfaces
             FIO.Visibility = Visibility.Hidden;
             Comment.Visibility = Visibility.Hidden;
             Date.Visibility = Visibility.Hidden;
+
+            FilterName.Visibility = Visibility.Hidden;
+            ApplyButton.Visibility = Visibility.Hidden;
+            FirstDate.Visibility = Visibility.Hidden;
+            SecondDate.Visibility = Visibility.Hidden;
         }
 
         private async void Appointment_Button_Click(object sender, RoutedEventArgs e)
@@ -271,16 +293,10 @@ namespace WindowsInterfaces
             Comment.Visibility = Visibility.Hidden;
             Date.Visibility = Visibility.Hidden;
 
-        }
-
-        private void AppointmentGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
-
-        private void ResearchGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            int id = ResearchGrid.SelectedIndex;
+            FilterName.Visibility = Visibility.Hidden;
+            ApplyButton.Visibility = Visibility.Hidden;
+            FirstDate.Visibility = Visibility.Hidden;
+            SecondDate.Visibility = Visibility.Hidden;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -295,6 +311,55 @@ namespace WindowsInterfaces
             AddAllergyWindow addAllergyWindow = new AddAllergyWindow(temp_patient);
             this.Close();
             addAllergyWindow.Show();
+        }
+
+        private List<Research> FilterResearchesByName(List<Research> researches, string temp)
+        {
+            return researches.Where(r=>r.Name.ToLower().Contains(temp)).ToList();
+        }
+
+        private List<Research> FilterResearches(List<Research> researches, DateTime firstDate, DateTime secondDate, string temp)
+        {
+            return researches.Where(r => r.DateOfResearch >= firstDate && r.DateOfResearch <= secondDate && r.Name.ToLower().Contains(temp)).ToList();
+        }
+
+        private async void FilterByNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            using var researchService = new ResearchService(
+                   new ResearchRepository(
+                       new MedicalCards.DAL.AppContext()
+                       )
+                   );
+            
+            var reserches_list = await researchService.GetPatientResearches(temp_patient.PatientId);
+            var filtered_researches_list = FilterResearchesByName(reserches_list, FilterByNameTextBox.Text.ToLower().ToString());
+
+            ResearchGrid.ItemsSource = filtered_researches_list;
+            
+        }
+
+        private async void ApplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            using var researchService = new ResearchService(
+                   new ResearchRepository(
+                       new MedicalCards.DAL.AppContext()
+                       )
+                   );
+
+            if (FirstDate.SelectedDate == null)
+            {
+                FirstDate.SelectedDate = new DateTime(1900, 1, 1);
+            }
+
+            if (SecondDate.SelectedDate == null)
+            {
+                SecondDate.SelectedDate = DateTime.Now;
+            }
+
+            var reserches_list = await researchService.GetPatientResearches(temp_patient.PatientId);
+            var filtered_researches_list = FilterResearches(reserches_list, (DateTime)FirstDate.SelectedDate, (DateTime)SecondDate.SelectedDate, FilterByNameTextBox.Text.ToLower().ToString());
+            ResearchGrid.ItemsSource = filtered_researches_list;
+
         }
     }
 }

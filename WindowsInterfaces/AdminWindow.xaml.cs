@@ -126,8 +126,7 @@ namespace WindowsInterfaces
 
                 // Получение выбранного значения комбобокса
                 var selectedAccessType = (AccessType)comboBox.SelectedItem;
-                //MessageBox.Show(selectedAccessType.ToString());
-                //MessageBox.Show(user.Login.ToString());
+
                 // Изменение свойства объекта данных на основе выбранного значения комбобокса;
 
                 using var userService = new UserService(
@@ -143,7 +142,7 @@ namespace WindowsInterfaces
                     );
                 user.Access = (AccessType)selectedAccessType;
                 var user1 = await userService.UpdateUser(user);
-                MessageBox.Show(user1.Access.ToString());
+                MessageBox.Show("Статус аккаунта " + user1.Login.ToString() + " успешно изменён");
                 
             }
 

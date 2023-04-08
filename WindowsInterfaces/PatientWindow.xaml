@@ -139,7 +139,7 @@
 
         <DataGrid Grid.Row="1" Margin="337,60,153,311"
                   x:Name="ResearchGrid" AutoGenerateColumns="False" 
-                  Visibility="Hidden" IsReadOnly="True" MouseDoubleClick="ResearchGrid_MouseDoubleClick">
+                  Visibility="Hidden" IsReadOnly="True">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Height" Value="100"/>
@@ -260,7 +260,7 @@
 
         <DataGrid Grid.Row="1" Margin="337,60,153,311"
                   x:Name="AppointmentGrid" AutoGenerateColumns="False" 
-                  Visibility="Hidden" IsReadOnly="True" MouseDoubleClick="AppointmentGrid_MouseDoubleClick">
+                  Visibility="Hidden" IsReadOnly="True" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="40" Binding="{Binding AppointmentId}" />
                 <DataGridTextColumn Header="Фамилия пациента"  Width="170" Binding="{Binding Patient.LastName}"/>
@@ -278,6 +278,38 @@
         <Label Grid.Row="1" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
                Margin="24,599,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
                Height="40" Width="149" Foreground="#FFC7CDD2"/>
-        
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="339,452,861,252" 
+                    Visibility="Hidden" x:Name="FilterName" Width="200">
+            <TextBox Style="{DynamicResource TextB}" x:Name="FilterByNameTextBox" BorderBrush="Black" TextChanged="FilterByNameTextBox_TextChanged"
+             Height="40" Width="250" />
+            <TextBlock IsHitTestVisible="False" Padding="13,10,10,0" Margin="-1000,3" 
+               FontSize="14" Text="Фильтрация по названию" Foreground="#FF464545" Height="48" Width="500" RenderTransformOrigin="0.447,0.678">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=FilterByNameTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </StackPanel>
+
+        <DatePicker HorizontalAlignment="Left" FontFamily="Calibri" FontSize="22"
+                    BorderThickness="0" x:Name="FirstDate" Visibility="Hidden"
+                    Margin="561,458,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Height="40"/>
+
+        <DatePicker HorizontalAlignment="Left" FontFamily="Calibri" FontSize="22"
+                    BorderThickness="0" x:Name="SecondDate" Visibility="Hidden"
+                    Margin="773,458,0,0" Grid.Row="1" VerticalAlignment="Top" Width="205" Height="40"/>
+
+        <Button Content="Применить" HorizontalAlignment="Left" x:Name="ApplyButton"
+            BorderThickness="0" Width="190" Height="39" Visibility="Hidden"
+            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+            Foreground="#FF8A99A8" Margin="1040,463,0,0" Click="ApplyButton_Click" />
+
     </Grid>
 </Window>
