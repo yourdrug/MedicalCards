@@ -298,6 +298,26 @@
             </TextBlock>
         </StackPanel>
 
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="339,452,861,252" 
+                    Visibility="Hidden" x:Name="FilterSurname" Width="200">
+            <TextBox Style="{DynamicResource TextB}" x:Name="FilterBySurnameTextBox" BorderBrush="Black" 
+                     TextChanged="FilterBySurnameTextBox_TextChanged"
+             Height="40" Width="250" />
+            <TextBlock IsHitTestVisible="False" Padding="13,10,10,0" Margin="-1000,3" 
+               FontSize="14" Text="Фамилия доктора" Foreground="#FF464545" Height="48" Width="500" >
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=FilterBySurnameTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </StackPanel>
+
         <DatePicker HorizontalAlignment="Left" FontFamily="Calibri" FontSize="22"
                     BorderThickness="0" x:Name="FirstDate" Visibility="Hidden"
                     Margin="561,458,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Height="40"/>

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,8 +19,20 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<PrescriptionOfMedicines> GetByIdWithAllDependencies(int id)
         {
-            return await set.Include(p => p.Appointment)
-                            .Include(p => p.Medicines).SingleAsync(p=>p.AppointmentId == id);
+            var pom =  await set.Include(p => p.Appointment)
+                            .Include(p => p.Medicines).SingleAsync(p => p.AppointmentId == id);
+
+            if (pom == null)
+            {
+                throw new Exception("No pom by this id");
+            }
+
+            else
+            {
+                return pom;
+            }
         }
+
+
     }
 }

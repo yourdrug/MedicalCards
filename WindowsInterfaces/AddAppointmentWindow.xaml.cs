@@ -2,6 +2,7 @@
 using MedicalCards.BLL.Services;
 using MedicalCards.DAL.Entities;
 using MedicalCards.DAL.Repositories;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -64,7 +65,7 @@ namespace WindowsInterfaces
                        );
 
             var patients_list = await patientService.GetAll();
-            PatientsGrid.ItemsSource = (System.Collections.IEnumerable)patients_list;
+            PatientsGrid.ItemsSource = patients_list;
         }
 
         private void Finish_Button_Click(object sender, RoutedEventArgs e)
@@ -81,39 +82,55 @@ namespace WindowsInterfaces
                        )
                    );
 
-            var temp_medicines = POMS.AddMedicines(Data.medicines);
+            var temp_medicines = POMS.AddMedicines(Data.medicines, CommentTextBox.Text.ToString());
 
-            IFormatProvider formatter = new NumberFormatInfo { NumberDecimalSeparator = "." };
-            double price = double.Parse(PriceTextBox.Text.ToString(), formatter);
+            if(!PriceTextBox.Text.IsNullOrEmpty() && DateOfAppointment.SelectedDate != null && temp_patient!= null)
+            {
+                IFormatProvider formatter = new NumberFormatInfo { NumberDecimalSeparator = "." };
+                double price = double.Parse(PriceTextBox.Text.ToString(), formatter);
 
-            DateTime date = (DateTime)DateOfAppointment.SelectedDate;
+                DateTime date = (DateTime)DateOfAppointment.SelectedDate;
 
-            POMS.CreateAppointment(price, date, temp_medicines, temp_doctor, temp_patient);
+                POMS.CreateAppointment(price, date, temp_medicines, temp_doctor, temp_patient);
 
-            MessageBox.Show("Успешно");
+                MessageBox.Show("Успешно добавлен новый прием.", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            DoctorWindow doctorWindow = new DoctorWindow(temp_doctor);
-            doctorWindow.Show();
-            this.Close();
+                DoctorWindow doctorWindow = new DoctorWindow(temp_doctor);
+                doctorWindow.Show();
+                this.Close();
+            }
+
+            else
+            {
+                MessageBox.Show("Заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
 
         private async void PatientsGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            selectedId = ((Patient)PatientsGrid.SelectedItem).PatientId;
-            MessageBox.Show(selectedId.ToString());
-            PatientTextBlock.Text = ((Patient)PatientsGrid.SelectedItem).LastName + " " + ((Patient)PatientsGrid.SelectedItem).FirstName;
+            try
+            {
+                selectedId = ((Patient)PatientsGrid.SelectedItem).PatientId;
+                PatientTextBlock.Text = ((Patient)PatientsGrid.SelectedItem).LastName + " " + ((Patient)PatientsGrid.SelectedItem).FirstName;
 
-            using var patientService = new PatientService(
-                  new PatientRepository(
-                      new MedicalCards.DAL.AppContext()
-                      ),
-                  new AddressRepository(
-                      new MedicalCards.DAL.AppContext()
-                      )
-                  );
+                using var patientService = new PatientService(
+                      new PatientRepository(
+                          new MedicalCards.DAL.AppContext()
+                          ),
+                      new AddressRepository(
+                          new MedicalCards.DAL.AppContext()
+                          )
+                      );
 
-            temp_patient = await patientService.GetPatient(selectedId);
+                temp_patient = await patientService.GetPatient(selectedId);
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Пациент выбран неверно.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }

@@ -18,20 +18,22 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<List<Medicines?>?> GetMedicinesByAppointment(Appointment appointment)
         {
+
             var entry = set.Entry(appointment);
-            await entry.Collection(a=>a.PrescriptionOfMedicines).LoadAsync();
-            return (List<Medicines?>?)entry.Entity?.PrescriptionOfMedicines?.Select(m => m.Medicines);
+            await entry.Collection(a => a.PrescriptionOfMedicines).LoadAsync();
+            return entry.Entity?.PrescriptionOfMedicines?.Select(m => m.Medicines).ToList();
         }
+
 
         public async Task<List<Appointment?>?> GetAllWithAllDependencies()
         {
-            List<Appointment?> appointments = await set.Include(a => a.Doctor).Include(a => a.Patient).Include(a => a.PrescriptionOfMedicines).ToListAsync();
+            var appointments = await set.Include(a => a.Doctor).Include(a => a.Patient).Include(a => a.PrescriptionOfMedicines).ToListAsync();
             return appointments;
         }
 
         public async Task<List<Appointment?>?> GetAppointmentsByDoctor(int id)
         {
-            List<Appointment?> appointments = await set.Where(d=>d.DoctorId == id)
+            var appointments = await set.Where(d=>d.DoctorId == id)
                                                         .Include(a => a.Doctor)
                                                         .Include(a => a.Patient)
                                                         .Include(a => a.PrescriptionOfMedicines).ToListAsync();
@@ -40,7 +42,7 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<List<Appointment?>?> GetAppointmentsByPatient(int id)
         {
-            List<Appointment?> appointments = await set.Where(d => d.PatientId == id)
+            var appointments = await set.Where(d => d.PatientId == id)
                                                         .Include(a => a.Doctor)
                                                         .Include(a => a.Patient)
                                                         .Include(a => a.PrescriptionOfMedicines).ToListAsync();

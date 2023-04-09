@@ -43,7 +43,15 @@ namespace MedicalCards.BLL.Services
 
         public async Task<Patient> GetPatient(int id)
         {
-            return await patientRepository.GetById(id);
+            try
+            {
+                return await patientRepository.GetById(id);
+            }
+            
+            catch(Exception)
+            {
+                throw new Exception("No patient by this id");
+            }
         }
 
         public async Task<Array> GetAll()

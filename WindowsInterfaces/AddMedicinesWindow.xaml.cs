@@ -78,7 +78,7 @@ namespace WindowsInterfaces
             temp.Price = price;
 
             Data.medicines.Add(temp);
-            MessageBox.Show("Успешно добавлено лкарство" + name);
+            MessageBox.Show("Успешно добавлено лекарство " + name);
 
             this.Close();
             Owner.Show();

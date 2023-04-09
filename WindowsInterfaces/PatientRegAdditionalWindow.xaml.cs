@@ -68,8 +68,8 @@ namespace WindowsInterfaces
             MessageBox.Show(features.BMI.ToString());
 
             features.Сholesterol = Convert.ToInt32(CholesterolTextBox.Text);
-            features.PatientId = temp_patient.PatientId;
-            addService.AddFeaturesToPatient(features);
+            //features.PatientId = temp_patient.PatientId;
+            addService.AddFeaturesToPatient(features, temp_patient.PatientId);
 
             if(!AllergenTextBox.Text.IsNullOrEmpty() && !ReactionTextBox.Text.IsNullOrEmpty() && !SevertyComboBox.Text.IsNullOrEmpty())
             {

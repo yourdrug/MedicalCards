@@ -23,4 +23,5 @@ namespace MedicalCards.DAL.Entities
 
         public IEnumerable<PrescriptionOfMedicines>? PrescriptionOfMedicines { get; set; }
     }
+
 }

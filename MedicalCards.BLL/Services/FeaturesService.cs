@@ -20,8 +20,16 @@ namespace MedicalCards.BLL.Services
 
         public async Task<Features> GetFeaturesByPatient(int id)
         {
-            var features = await featuresRepository.GetFeaturesByPatient(id);
-            return features;
+            try
+            {
+                var features = await featuresRepository.GetFeaturesByPatient(id);
+                return features;
+            }
+            
+            catch(Exception)
+            {
+                throw new Exception("No features by this patient");
+            }
         }
 
         public void Dispose()

@@ -18,12 +18,21 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<Diagnosis> GetByPatient(int id)
         {
-            return await set.SingleAsync(d => d.PatientId == id);
+            var diagnosis = await set.Include(d=>d.Doctor).Include(d=>d.Doctor).SingleAsync(d => d.PatientId == id);
+            if (diagnosis == null)
+            {
+                throw new Exception("No diagnosis");
+            }
+
+            else
+            {
+                return diagnosis;
+            }
         }
 
         public async Task<List<Diagnosis?>?> GetByDoctorWithAllDependencies(int id)
         {
-            return await set.Include(a => a.Doctor).Include(a => a.Patient).Where(d => d.DoctorId == id).ToListAsync();
+            return await set.Where(d => d.DoctorId == id).Include(a => a.Doctor).Include(a => a.Patient).ToListAsync();
         }
     }
 }

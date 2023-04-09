@@ -20,5 +20,7 @@ namespace MedicalCards.DAL.Entities
         public Medicines? Medicines { get; set; }
 
         public Appointment? Appointment { get; set; }
+
     }
+
 }

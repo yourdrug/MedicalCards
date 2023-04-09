@@ -53,7 +53,7 @@ namespace WindowsInterfaces
                 Watermark.Visibility = Visibility.Collapsed;
             }
 
-            else 
+            else
             {
                 Watermark.Visibility = Visibility.Visible;
             }
@@ -61,7 +61,10 @@ namespace WindowsInterfaces
 
         private async void SignIn_Click(object sender, RoutedEventArgs e)
         {
-            using var userService = new UserService(
+
+            try
+            {
+                using var userService = new UserService(
                    new UserRepository(
                        new MedicalCards.DAL.AppContext()
                        ),
@@ -73,50 +76,57 @@ namespace WindowsInterfaces
                        )
                    );
 
-            User user = await userService.Authentificate(LoginTextBox.Text, PasswordTextBox.Password);
+                User user = await userService.Authentificate(LoginTextBox.Text, PasswordTextBox.Password);
 
-            if (user.Access == User.AccessType.Active)
-            {
-
-                switch (user.Role)
+                if (user.Access == User.AccessType.Active)
                 {
-                    case User.RoleType.Patient:
-                        {
-                            Patient patient = await userService.GetPatientByUser(user);
-                            PatientWindow patientWindow = new PatientWindow(patient);
-                            patientWindow.Show();
-                            this.Close();
-                            break;
-                        }
 
-                    case User.RoleType.Doctor:
-                        {
-                            Doctor doctor = await userService.GetDoctorByUser(user);
-                            DoctorWindow doctorWindow = new DoctorWindow(doctor);
-                            doctorWindow.Show();
-                            this.Close();
-                            break;
-                        }
+                    switch (user.Role)
+                    {
+                        case User.RoleType.Patient:
+                            {
+                                Patient patient = await userService.GetPatientByUser(user);
+                                PatientWindow patientWindow = new PatientWindow(patient);
+                                patientWindow.Show();
+                                this.Close();
+                                break;
+                            }
 
-                    case User.RoleType.Admin:
-                        {
-                            AdminWindow adminWindow = new AdminWindow();
-                            adminWindow.Show();
-                            this.Close();
-                            break;
-                        }
+                        case User.RoleType.Doctor:
+                            {
+                                Doctor doctor = await userService.GetDoctorByUser(user);
+                                DoctorWindow doctorWindow = new DoctorWindow(doctor);
+                                doctorWindow.Show();
+                                this.Close();
+                                break;
+                            }
+
+                        case User.RoleType.Admin:
+                            {
+                                AdminWindow adminWindow = new AdminWindow();
+                                adminWindow.Show();
+                                this.Close();
+                                break;
+                            }
+                    }
                 }
+
+                else
+                {
+                    MessageBox.Show("Ваша учетная запись заблокирована или находится на рассмотрении!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+                LoginTextBox.Text = "";
+                PasswordTextBox.Clear();
+
             }
 
-            else
+            catch (InvalidOperationException)
             {
-                MessageBox.Show("Ваша учетная запись заблокирована или находится на рассмотрении!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Неверный логин или пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
-            LoginTextBox.Text = "";
-            PasswordTextBox.Clear();
-
         }
+
 
     }
 }

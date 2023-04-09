@@ -25,7 +25,7 @@ namespace MedicalCards.BLL.Services
             diagnosisRepository.Save();
         }
 
-        public async Task<List<Diagnosis?>> GetDiagnosisByDoctor(int id)
+        public async Task<List<Diagnosis>> GetDiagnosisByDoctor(int id)
         {
             var diagnoses_list = await diagnosisRepository.GetByDoctorWithAllDependencies(id);
             return diagnoses_list;
@@ -33,8 +33,17 @@ namespace MedicalCards.BLL.Services
 
         public async Task<Diagnosis> GetDiagnosisByPatient(int id)
         {
-            var diagnosis = await diagnosisRepository.GetByPatient(id);
-            return diagnosis;
+            try
+            {
+                var diagnosis = await diagnosisRepository.GetByPatient(id);
+                return diagnosis;
+            }
+
+            catch(Exception)
+            {
+                throw new Exception("No diagnosis by this patient");
+            }
+            
         }
 
         public async Task<Doctor> GetDoctorByDiagnosis(int id)

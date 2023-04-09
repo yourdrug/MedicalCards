@@ -20,8 +20,17 @@ namespace MedicalCards.DAL.Repositories
         public async Task<User> FindByCredits(string login, string hash)
         {
             var user = await set.SingleAsync(user => EF.Functions.Collate(user.Login, "SQL_Latin1_General_CP1_CS_AS") == login && user.Hash == hash);
+
+            if (user == null)
+            {
+                throw new InvalidOperationException("User not found");
+            }
+
+            else
+            {
+                return user;
+            }
             
-            return user;
         }
 
         public async Task<bool> isUniqueLogin(string login)

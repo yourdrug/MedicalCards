@@ -122,7 +122,7 @@
             BorderThickness="0" Width="224" Height="60" 
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
             Foreground="#FF8A99A8" Margin="60,164,0,0" Click="Diagnosis_Button_Click" />
-        
+
         <DataGrid Grid.Row="1" Margin="337,60,153,311"
                   x:Name="DiagnosisGrid" AutoGenerateColumns="False" 
                   Visibility="Hidden" IsReadOnly="True">
@@ -172,7 +172,7 @@
             BorderThickness="0" Width="190" Height="39" Visibility="Hidden"
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
             Foreground="#FF8A99A8" Margin="337,477,0,0" Click="Add_Button_Click" />
-        
+
         <Button Content="Исследования" HorizontalAlignment="Left" x:Name="Research"
             BorderThickness="0" Width="224" Height="60" 
             VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
@@ -182,6 +182,10 @@
         <Label Grid.Row="1" Grid.Column="0" Content="Gogle Inc.   ver 1.0" HorizontalAlignment="Left" 
                Margin="24,599,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="22" 
                Height="40" Width="149" Foreground="#FFC7CDD2"/>
-        
+        <Button Content="Добавить данные" HorizontalAlignment="Left" x:Name="AddFeatures"
+            BorderThickness="0" Width="224" Height="60" 
+            VerticalAlignment="Top" Background="#FF435971" Grid.Row="1"
+            Foreground="#FF8A99A8" Margin="60,375,0,0" Click="AddFeatures_Click" />
+
     </Grid>
 </Window>

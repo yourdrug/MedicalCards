@@ -30,16 +30,34 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<TEntity> Delete(int id)
         {
-            TEntity entry = await GetById(id);
-            set.Remove(entry);
-            await _context.SaveChangesAsync();
-            return entry;
+            try
+            {
+                TEntity entry = await GetById(id);
+                set.Remove(entry);
+                await _context.SaveChangesAsync();
+                return entry;
+            }
+
+            catch(Exception)
+            {
+                throw new Exception("Incorrect deleting");
+            }
+            
         }
 
         public void Delete(TEntity entry)
         {
-            set.Remove(entry);
-            _context.SaveChanges();
+            if (entry == null)
+            {
+                throw new Exception("No object");
+            }
+
+            else
+            {
+                set.Remove(entry);
+                _context.SaveChanges();
+            }
+            
         }
 
         public void Dispose()
@@ -59,14 +77,32 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<TEntity> GetById(int id)
         {
-            return await set.FindAsync(id);
+            var temp = await set.FindAsync(id);
+            if (temp == null)
+            {
+                throw new Exception("No object by this id");
+            }
+            else 
+            {
+                return temp;
+            }
+
         }
 
         public async Task<TEntity> Update(TEntity item)
         {
-            EntityEntry<TEntity> update = set.Update(item);
-            await _context.SaveChangesAsync();
-            return update.Entity;
+            if(item == null)
+            {
+                throw new Exception("Incorrect object to update");
+            }
+
+            else
+            {
+                EntityEntry<TEntity> update = set.Update(item);
+                await _context.SaveChangesAsync();
+                return update.Entity;
+            }
+            
         }
 
         public void Save()

@@ -10,5 +10,8 @@ namespace MedicalCards.DAL.Repositories.Interfaces
     public interface IFeaturesRepository:IRepository<Features>
     {
         public Task<Features> GetFeaturesByPatient(int id);
+
+        public Task<bool> isUniqueFeatures(int id);
+
     }
 }

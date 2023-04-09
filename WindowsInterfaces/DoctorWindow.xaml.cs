@@ -130,6 +130,14 @@ namespace WindowsInterfaces
             var researches = await researchService.GetAllResearches();
             ResearchGrid.ItemsSource = researches;
         }
+
+        private void AddFeatures_Click(object sender, RoutedEventArgs e)
+        {        
+            DoctorAddFeaturesWindow addFeaturesWindow = new DoctorAddFeaturesWindow();
+            addFeaturesWindow.Owner = this;
+            this.Hide();
+            addFeaturesWindow.Show();
+        }
     }
 
 

@@ -18,7 +18,18 @@ namespace MedicalCards.DAL.Repositories
 
         public async Task<Doctor> GetByIdWithAllDependencies(int id)
         {
-            return await set.Include(p => p.Appointment).Include(p => p.Diagnosis).SingleAsync(p=>p.DoctorId == id);
+            var doctor = await set.Include(p => p.Appointment).Include(p => p.Diagnosis).Include(p=>p.Qualification).SingleAsync(p=>p.DoctorId == id);
+
+            if (doctor == null)
+            {
+                throw new Exception("No doctor by this id");
+            }
+
+            else
+            {
+                return doctor;            
+            }
+
         }
     }
 }

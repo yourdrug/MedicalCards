@@ -27,16 +27,34 @@ namespace MedicalCards.BLL.Services
             return await prescriptionOfMedicinesRepository.GetByIdWithAllDependencies(id);
         }
 
-        public List<PrescriptionOfMedicines> AddMedicines(List<Medicines> list_medicines)
+        public List<PrescriptionOfMedicines> AddMedicines(List<Medicines> list_medicines, string comment)
         {
             List<PrescriptionOfMedicines> prescriptionOfMedicines = new List<PrescriptionOfMedicines>();
             foreach (var medicine in list_medicines)
             {
-                prescriptionOfMedicines.Add(new PrescriptionOfMedicines() {Comment = "Всё хорошо", MedicinesId = medicine.MedicinesId} );
+                prescriptionOfMedicines.Add(new PrescriptionOfMedicines() {Comment = comment, MedicinesId = medicine.MedicinesId} );
                 
             }
 
             return prescriptionOfMedicines;
+        }
+
+        public async Task<List<string>> GetMedicines(List<Appointment> appointments)
+        {
+            List<string> medicines = new List<string>();
+            foreach (var appointment in appointments)
+            {
+                var temp = await appointmentRepository.GetMedicinesByAppointment(appointment);
+                
+                string medicines_str = "";
+                for(int i =0; i < temp.Count; i++)
+                {
+                    medicines_str.Concat(temp[i].Name + ", ");
+                }
+                medicines.Add(medicines_str);
+            }
+
+            return medicines;
         }
 
         public void CreateAppointment(double price, DateTime dateTime, List<PrescriptionOfMedicines> temp_medicines, Doctor doctor, Patient patient)
@@ -71,9 +89,21 @@ namespace MedicalCards.BLL.Services
             return await appointmentRepository.GetAppointmentsByDoctor(id);
         }
 
-        public async Task<List<Appointment?>?> GetAppointmentsByPatient(int id)
+        public async Task<List<Appointment>> GetAppointmentsByPatient(int id)
         {
             return await appointmentRepository.GetAppointmentsByPatient(id);
+        }
+
+        public List<PrescriptionOfMedicines> GetPrescriptionOfMedicines(List<Medicines> list_medicines)
+        {
+            List<PrescriptionOfMedicines> prescriptionOfMedicines = new List<PrescriptionOfMedicines>();
+            foreach (var medicine in list_medicines)
+            {
+                prescriptionOfMedicines.Add(new PrescriptionOfMedicines() { Comment = "Всё хорошо", MedicinesId = medicine.MedicinesId });
+
+            }
+
+            return prescriptionOfMedicines;
         }
 
         public void Dispose()

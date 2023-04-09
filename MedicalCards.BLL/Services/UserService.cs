@@ -44,8 +44,16 @@ namespace MedicalCards.BLL.Services
 
         public async Task<User> Authentificate(string login, string password)
         {
-            var user = await userRepository.FindByCredits(login, GetSHA256Hash(password));
-            return user;
+            try
+            {
+                var user = await userRepository.FindByCredits(login, GetSHA256Hash(password));
+                return user;
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Пробрасываем исключение дальше
+                throw ex;
+            }
         }
 
         public void CancelSignUp(User user)
@@ -55,37 +63,37 @@ namespace MedicalCards.BLL.Services
 
         public async Task<User> SignUp(string login, string password, string role)
         {
-            User user = new User();
             if (await userRepository.isUniqueLogin(login))
             {
+                User user = new User();
                 user.Login = login;
+                user.Hash = GetSHA256Hash(password);
+                switch (role)
+                {
+                    case "Admin":
+                        user.Role = User.RoleType.Admin;
+                        break;
+                    case "Patient":
+                        user.Role = User.RoleType.Patient;
+                        break;
+                    case "Doctor":
+                        user.Role = User.RoleType.Doctor;
+                        break;
+                }
+
+                user.Access = User.AccessType.UnderInvestigation;
+
+                User user2 = await userRepository.Create(user);
+                userRepository.Save();
+
+                return user2;
             }
 
             else
             {
-                //
+                throw new Exception("Incorrect login");
             }
 
-            user.Hash = GetSHA256Hash(password);
-            switch (role)
-            {
-                case "Admin":
-                    user.Role = User.RoleType.Admin;
-                    break;
-                case "Patient":
-                    user.Role = User.RoleType.Patient;
-                    break;
-                case "Doctor":
-                    user.Role = User.RoleType.Doctor;
-                    break;
-            }
-
-            user.Access = User.AccessType.UnderInvestigation;
-
-            User user2 = await userRepository.Create(user);
-            userRepository.Save();
-
-            return user2;
         }
 
 
