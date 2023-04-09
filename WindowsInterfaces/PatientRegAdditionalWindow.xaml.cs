@@ -81,8 +81,8 @@ namespace WindowsInterfaces
                 addService.AddAllergyToPatient(allergy);
             }
 
-            MessageBox.Show("Успешно");
-            PatientWindow patientWindow = new PatientWindow(temp_patient);
+            MessageBox.Show("Успешно добавлен новый пациент", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+            AuthWindow patientWindow = new AuthWindow();
             patientWindow.Show();
             this.Close();
         }

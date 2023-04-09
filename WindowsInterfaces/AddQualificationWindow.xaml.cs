@@ -49,7 +49,7 @@ namespace WindowsInterfaces
 
             this.Close();
 
-            DoctorWindow doctorWindow = new DoctorWindow(temp_doctor);
+            AuthWindow doctorWindow = new AuthWindow();
             doctorWindow.Show();
         }
     }

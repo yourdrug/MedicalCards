@@ -128,11 +128,17 @@
                   Visibility="Hidden" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="40" Binding="{Binding DiagnosisId}" />
-                <DataGridTextColumn Header="Название"  Width="150" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Название"  Width="150" Binding="{Binding Name}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Фамилия доктора"  Width="*" Binding="{Binding Doctor.LastName}"/>
                 <DataGridTextColumn Header="Фамилия пациента"  Width="*" Binding="{Binding Patient.LastName}"/>
                 <DataGridTextColumn Header="Комментарий"  Width="*" Binding="{Binding Comment}"/>
-                <DataGridTextColumn Header="Дата постановки"  Width="120" Binding="{Binding DateOfDiagnosis}"/>
+                <DataGridTextColumn Header="Дата постановки"  Width="140" Binding="{Binding DateOfDiagnosis}"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -164,7 +170,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Комментарий"  Width="*" Binding="{Binding Comment}"/>
-                <DataGridTextColumn Header="Дата проведения"  Width="120" Binding="{Binding DateOfResearch}"/>
+                <DataGridTextColumn Header="Дата проведения"  Width="140" Binding="{Binding DateOfResearch}"/>
             </DataGrid.Columns>
         </DataGrid>
 

@@ -65,6 +65,8 @@ namespace AuthWindow
 
         private async void SignUp_Button_Click(object sender, RoutedEventArgs e)
         {
+
+
             {
                 using var userService = new UserService(
                     new UserRepository(
@@ -94,36 +96,45 @@ namespace AuthWindow
 
                 else
                 {
-                    User user = await userService.SignUp(LoginTextBox.Text, PasswordTextBox.Password, ComboBox1.Text);
-
-                    switch (user.Role)
+                    try
                     {
-                        case User.RoleType.Patient:
-                            {
-                                this.Hide();
-                                PatientRegWindow patientRegWindow = new PatientRegWindow(user);
-                                patientRegWindow.Owner = this;
-                                patientRegWindow.Show();
-                                break;
-                            }
+                        User user = await userService.SignUp(LoginTextBox.Text, PasswordTextBox.Password, ComboBox1.Text);
 
-                        case User.RoleType.Doctor:
-                            {
-                                this.Hide();
-                                DoctorRegWindow doctorRegWindow = new DoctorRegWindow(user);
-                                doctorRegWindow.Owner = this;
-                                doctorRegWindow.Show();
-                                break;
-                            }
+                        switch (user.Role)
+                        {
+                            case User.RoleType.Patient:
+                                {
+                                    this.Hide();
+                                    PatientRegWindow patientRegWindow = new PatientRegWindow(user);
+                                    patientRegWindow.Owner = this;
+                                    patientRegWindow.Show();
+                                    break;
+                                }
 
-                        case User.RoleType.Admin:
-                            {
-                                MessageBox.Show("Ожидайте одобрения регистрации от Администратора", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
-                                Owner.Show();
-                                this.Close();
-                                break;
-                            }
+                            case User.RoleType.Doctor:
+                                {
+                                    this.Hide();
+                                    DoctorRegWindow doctorRegWindow = new DoctorRegWindow(user);
+                                    doctorRegWindow.Owner = this;
+                                    doctorRegWindow.Show();
+                                    break;
+                                }
+
+                            case User.RoleType.Admin:
+                                {
+                                    MessageBox.Show("Ожидайте одобрения регистрации от Администратора", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    Owner.Show();
+                                    this.Close();
+                                    break;
+                                }
+                        }
                     }
+
+                    catch(Exception)
+                    {
+                        MessageBox.Show("Введите другой логин", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    
                 }   
 
             }
